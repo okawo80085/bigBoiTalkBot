@@ -2,6 +2,8 @@ import discord
 from discord import Game
 from discord.ext.commands import Bot
 import re
+import utils
+import string
 
 BOT_PREFIX = '!'
 TOKEN = 'NTkyNzg2Nzg0MDY1MTU5MTg4.XREZyg.FpMEVwfyNoW54eiPpW8_JGmdh6o'
@@ -18,12 +20,17 @@ async def on_message(msg):
 		return
 	print (msg.channel, msg.author, msg.content)
 
+	vocab = string.ascii_letters + ''.join([str(i) for i in range(10)]) + '!@#$%^&*()_+-=;:.,<>/?~\\\'"[]{}|'
+
+	proced = utils.proc_text(msg, vocab)
+
 	if re.search('^[!]halp', str(msg.content)) != None:
 		await bop.send_typing(msg.channel)
 		await bop.send_message(msg.channel, 'hi, im a bot... i talk mad shit')
 
-	elif len(proced) <= 300:
+	elif len(proced) <= 200:
 		#do the thing
+		print (proced)
 		pass
 
 	else:
