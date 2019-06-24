@@ -18,9 +18,9 @@ bop = Bot(command_prefix=BOT_PREFIX)
 async def on_message(msg):
 	if msg.author == bop.user:
 		return
-	print (msg.channel, msg.author, msg.content)
+	print ('{}> {} : {}'.format(msg.channel, msg.author, msg.content))
 
-	vocab = string.ascii_letters + ''.join([str(i) for i in range(10)]) + '!@#$%^&*()_+-=;:.,<>/?~\\\'"[]{}|'
+	vocab = ''.join([chr(i) for i in range(33, 127)]).replace(chr(96), '')
 
 	proced = utils.proc_text(msg, vocab)
 
@@ -30,7 +30,7 @@ async def on_message(msg):
 
 	elif len(proced) <= 200:
 		#do the thing
-		print (proced)
+		print (len(proced), proced)
 		pass
 
 	else:
