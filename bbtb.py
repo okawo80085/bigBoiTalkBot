@@ -18,9 +18,13 @@ async def on_message(msg):
 		return
 	print (msg.channel, msg.author, msg.content)
 
-	if re.search('^!halp', str(msg.content)) != None:
+	if re.search('^[!]halp', str(msg.content)) != None:
 		await bop.send_typing(msg.channel)
 		await bop.send_message(msg.channel, 'hi, im a bot... i talk mad shit')
+
+	elif len(proced) <= 300:
+		#do the thing
+		pass
 
 	else:
 		pass
