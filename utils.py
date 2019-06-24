@@ -32,12 +32,12 @@ def clean_text(text):
 	text = text.replace('- ', " - ")
 	text = text.replace(" '", " ")
 	text = text.replace("' ", " ")
-	
+
 	for c in ".,:":
 		text = text.replace(c + ' ', ' ' + c + ' ')
 
 	text = re.sub(r' +', ' ', text.strip(' '))
-	
+
 	return text
 
 def proc_text(msgObj, vocab):
