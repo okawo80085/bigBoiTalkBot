@@ -36,7 +36,8 @@ re_pat = re.compile('^[.][ ]ACTION[ ]')
 re_pat2 = re.compile('^[.][ ]wz')
 #re_pat3 = re.compile('^\d+ [/] [a-m] [a-zA-Z!@#$%^&*()_\\/\'";:<>,.?`~]+')
 re_pat4 = re.compile('^[.] [3-9] |^[1-2][0-9] [/] [a-m]')
-re_pat5 = re.compile('^[!] \w+')
+re_pat5 = re.compile('^[!] \w+|^UnScramble|^U\d+ [(] U\d+')
+re_pat6 = re.compile('^[.] Question |^[.] Scorpio |^[.] Rooster ')
 
 for index, i in enumerate(posts):
 	to_search = ' '.join(i)
@@ -78,6 +79,15 @@ for index, i in enumerate(posts):
 		#print (to_search)
 		#print (' '.join(posts[index+1]))
 		del posts[index]
+
+for index, i in enumerate(posts):
+	to_search = ' '.join(i)
+
+	if re_pat6.search(to_search) != None:
+		#print (to_search)
+		#print (' '.join(posts[index+1]))
+		posts[index] = i[3:]
+		#print (posts[index])
 
 #exit()
 
