@@ -6,7 +6,7 @@ import utils
 import string
 
 BOT_PREFIX = '!'
-TOKEN = 'NTkyNzg2Nzg0MDY1MTU5MTg4.XREZyg.FpMEVwfyNoW54eiPpW8_JGmdh6o'
+TOKEN = 'NTkyNzg2Nzg0MDY1MTU5MTg4.XRIoEQ.oRCPkB6eytfNmLDGCpKDtX-BuuU'
 
 gameStat = 'with idiots'
 
@@ -18,9 +18,10 @@ bop = Bot(command_prefix=BOT_PREFIX)
 async def on_message(msg):
 	if msg.author == bop.user:
 		return
-	print ('{}> {} : {}'.format(msg.channel, msg.author, msg.content))
+	print ('{} > {} : {}'.format(msg.channel, msg.author, msg.content))
 
-	vocab = ''.join([chr(i) for i in range(33, 127)]).replace(chr(96), '')
+	vocab = sorted([chr(i) for i in range(32, 127) if i != 96])
+	vocab.insert(0, None)
 
 	proced = utils.proc_text(msg, vocab)
 
@@ -30,7 +31,7 @@ async def on_message(msg):
 
 	elif len(proced) <= 200:
 		#do the thing
-		print (len(proced), proced)
+		print (len(proced), ':', proced)
 		pass
 
 	else:
