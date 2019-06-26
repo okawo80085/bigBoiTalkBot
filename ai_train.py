@@ -19,8 +19,8 @@ def make_model():
 	model.add(l.LeakyReLU())
 	#model.add(l.Flatten())
 	
-	model.add(l.Reshape((2, 200)))
-	assert model.output_shape == (None, 2, 200)
+	model.add(l.Reshape((1, 400)))
+	assert model.output_shape == (None, 1, 400)
 
 	# hidden layers
 	model.add(l.GRU(64, return_sequences=True, activation='relu'))
@@ -54,8 +54,6 @@ except Exception as e:
 
 raw_data = utils.untokenize(utils.get_dataset())
 
-for i in raw_data:
-	print (i)
 
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')
