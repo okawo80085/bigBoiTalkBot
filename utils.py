@@ -2,6 +2,7 @@ import nltk
 from nltk.corpus import nps_chat
 from mosestokenizer import MosesDetokenizer
 import re
+import numpy as np
 
 def clean_text(text):
 	'''
@@ -161,5 +162,20 @@ def untokenize(nps_chatTokenized):
 	with MosesDetokenizer('en') as detokenizer:
 		return [detokenizer(i) for i in nps_chatTokenized]
 
-def dataset_to_inputs(textList):
-	pass
+def arr_to_vocab(arr, vocab):
+	'''
+	returns a provided array converted with provided vocab dict, all array elements have to be in the vocab, but not all vocab elements have to be in the input array
+	'''
+	return [vocab[i] for i in arr]
+
+def dataset_to_inputs(textList, vocab):
+	to_vocab = {}
+	from_vocab = {}
+
+	for i in vocab:
+		to_vocab[vocab.index(i)] = i
+		from_vocab[i] = vocab.index(i)
+
+	outX = np.array([np.zeros(400)], dtype=np.float32)
+
+	return to_vocab, from_vocab
