@@ -40,7 +40,7 @@ generator_model = make_model()
 generator_model.summary()
 
 generator_model.compile(optimizer=tf.train.AdamOptimizer(0.00003),
-	loss='mse',
+	loss='sparse_categorical_crossentropy',
 	metrics=['accuracy'])
 
 tb_callback = tb(log_dir='log/{}'.format(time.time()))
@@ -54,6 +54,20 @@ except Exception as e:
 
 raw_data = utils.untokenize(utils.get_dataset())
 
+vocab = sorted([chr(i) for i in range(32, 127) if i != 96])
+vocab.insert(0, None)
 
+x, y, toV, fromV = utils.dataset_to_XY(raw_data, vocab)
+
+a = utils.arr_to_vocab('lorem ipusm afte phum! >.<', fromV)
+b = ''.join(utils.arr_to_vocab(a, toV))
+
+print (a)
+print (b)
+
+for tx, ty in zip(x[:200], y[:200]):
+	print (tx, ty)
+
+print (len(x), len(y))
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')
