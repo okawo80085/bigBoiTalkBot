@@ -214,31 +214,32 @@ def dataset_to_XY(textList, vocab, maxLen=200):
 
 	return X, Y, to_vocab, from_vocab
 
+def pad_right(arr, maxLen):
+	if arr.shape[0] >= maxLen:
+		return arr[:maxLen]
+
+	else:
+		return np.concatenate((arr, np.zeros(maxLen-arr.shape[0])))
+
 def XY_to_train(strX, strY, vocabFrom, maxLen=200, dictLen=95):
 
 	outX = np.array([np.zeros(400)], dtype=np.float32)
 
-	for i in strX:
-		temp = np.array(arr_to_vocab(i[0], vocabFrom), dtype=np.float32)
-		temp2 = np.array(arr_to_vocab(i[1], vocabFrom), dtype=np.float32)
+	dataLen = len(strY)
 
-		#print (temp.shape, temp2.shape)
+	print ('='*20, 'starting data convertion', '='*20)
 
-		if temp.shape[0] >= maxLen:
-			temp = temp[:maxLen]
-
-		else:
-			temp = np.concatenate((temp, np.zeros(maxLen-temp.shape[0])))
-
-
-		if temp2.shape[0] >= maxLen:
-			temp2 = temp2[:maxLen]
-
-		else:
-			temp2 = np.concatenate((temp2, np.zeros(maxLen-temp2.shape[0])))
+	for index, i in enumerate(strX):
+		temp = pad_right(np.array(arr_to_vocab(i[0], vocabFrom), dtype=np.float32), maxLen)
+		temp2 = pad_right(np.array(arr_to_vocab(i[1], vocabFrom), dtype=np.float32), maxLen)
 
 		outX = np.concatenate((outX, [np.concatenate((np.array([]), temp, temp2))]), axis=0)
 
+		if index % 100 == 0:
+			print ('{}/{} done'.format(index, dataLen))
+
 		#print (temp.shape, temp2.shape, tempX.shape)
+	
+	print ('='*20, 'done', '='*20)
 
 	return outX[1:], to_categorical(arr_to_vocab(strY, vocabFrom), dictLen)

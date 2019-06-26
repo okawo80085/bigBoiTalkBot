@@ -32,6 +32,7 @@ def make_model():
 	# output
 	model.add(l.Flatten())
 	model.add(l.Dense(95, activation='softmax'))
+	assert model.output_shape == (None, 95)
 
 	return model
 
@@ -40,10 +41,10 @@ generator_model = make_model()
 generator_model.summary()
 
 generator_model.compile(optimizer=tf.train.AdamOptimizer(0.00003),
-	loss='sparse_categorical_crossentropy',
+	loss='categorical_crossentropy',
 	metrics=['accuracy'])
 
-tb_callback = tb(log_dir='log/{}'.format(time.time()))
+tb_callback = tb(log_dir='.\\log\\', histogram_freq=0)
 
 try:
 	generator_model.load_weights('bigBoiAI.h5')
@@ -57,17 +58,20 @@ raw_data = utils.untokenize(utils.get_dataset())
 vocab = sorted([chr(i) for i in range(32, 127) if i != 96])
 vocab.insert(0, None)
 
-x, y, toV, fromV = utils.dataset_to_XY(raw_data, vocab)
+str_x, str_y, toV, fromV = utils.dataset_to_XY(raw_data, vocab)
 
-a = utils.arr_to_vocab('lorem ipusm afte phum! >.<', fromV)
-b = ''.join(utils.arr_to_vocab(a, toV))
+X, Y = utils.XY_to_train(str_x[:1000], str_y[:1000], fromV)
 
-print (a)
-print (b)
+#print (X, Y)
+print (X.shape, Y.shape)
+print (len(str_x), len(str_y))
 
-for tx, ty in zip(x[:200], y[:200]):
-	print (tx, ty)
+print ('='*20, 'starting training', '='*20)
 
-print (len(x), len(y))
+generator_model.fit(X, Y, epochs=20, batch_size=500, shuffle=True, callbacks=[tb_callback])
+
+generator_model.save('bigBoiAI.h5')
+
+print ('='*20, 'done', '='*20)
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')
