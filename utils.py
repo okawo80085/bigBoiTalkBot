@@ -1,5 +1,6 @@
 import nltk
 from nltk.corpus import nps_chat
+from mosestokenizer import MosesDetokenizer
 import re
 
 def clean_text(text):
@@ -89,7 +90,7 @@ def get_dataset():
 	re_pat2 = re.compile('^[.][ ]wz')
 	#re_pat3 = re.compile('^\d+ [/] [a-m] [a-zA-Z!@#$%^&*()_\\/\'";:<>,.?`~]+')
 	re_pat4 = re.compile('^[.] [3-9] |^[1-2][0-9] [/] [a-m]')
-	re_pat5 = re.compile('^[!] \w+|^UnScramble|^U\d+ [(] U\d+')
+	re_pat5 = re.compile('^[!] \w+|^UnScramble|^U\d+ [(] U\d+|^[:] U\d+')
 	re_pat6 = re.compile('^[.] Question |^[.] Scorpio |^[.] Rooster ')
 
 	for index, i in enumerate(posts):
@@ -143,3 +144,7 @@ def get_dataset():
 			#print (posts[index])
 
 	return posts
+
+def untokenize(nps_chatTokenized):
+	with MosesDetokenizer('en') as detokenizer:
+		return [detokenizer(i) for i in nps_chatTokenized]
