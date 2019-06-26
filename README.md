@@ -19,7 +19,7 @@ and Python3 😃
 
 ### training
 
-to train the model you need to pre-process the training data first
+to train the model you need to pre-process the training data, AT LEAST ONCE, first
 
 to pre-process the data, run
 ```python
