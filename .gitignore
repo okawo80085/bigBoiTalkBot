@@ -6,3 +6,8 @@
 *.log
 *.npy
 *.npz
+*.h5
+*.LENOVOH
+*.profile-empty
+*.trace
+*.db
