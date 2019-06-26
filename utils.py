@@ -5,6 +5,7 @@ from sacremoses import MosesDetokenizer
 import re
 import numpy as np
 import random
+from tensorflow.keras.utils import to_categorical
 
 def clean_text(text, vocab):
 	'''
@@ -165,6 +166,8 @@ def get_dataset():
 				if re_pat7.search(j) != None:
 					posts[index][index2] = random.choice(nameList)
 
+	print ('done')
+
 	return posts
 
 def untokenize(nps_chatTokenized):
@@ -178,7 +181,12 @@ def arr_to_vocab(arr, vocab):
 	'''
 	returns a provided array converted with provided vocab dict, all array elements have to be in the vocab, but not all vocab elements have to be in the input array, works with strings too
 	'''
-	return [vocab[i] for i in arr]
+	try:
+		return [vocab[i] for i in arr]
+
+	except Exception as e:
+		print (e)
+		return []
 
 def dataset_to_XY(textList, vocab, maxLen=200):
 	to_vocab = {}
@@ -205,3 +213,32 @@ def dataset_to_XY(textList, vocab, maxLen=200):
 			Y.append(None)
 
 	return X, Y, to_vocab, from_vocab
+
+def XY_to_train(strX, strY, vocabFrom, maxLen=200, dictLen=95):
+
+	outX = np.array([np.zeros(400)], dtype=np.float32)
+
+	for i in strX:
+		temp = np.array(arr_to_vocab(i[0], vocabFrom), dtype=np.float32)
+		temp2 = np.array(arr_to_vocab(i[1], vocabFrom), dtype=np.float32)
+
+		#print (temp.shape, temp2.shape)
+
+		if temp.shape[0] >= maxLen:
+			temp = temp[:maxLen]
+
+		else:
+			temp = np.concatenate((temp, np.zeros(maxLen-temp.shape[0])))
+
+
+		if temp2.shape[0] >= maxLen:
+			temp2 = temp2[:maxLen]
+
+		else:
+			temp2 = np.concatenate((temp2, np.zeros(maxLen-temp2.shape[0])))
+
+		outX = np.concatenate((outX, [np.concatenate((np.array([]), temp, temp2))]), axis=0)
+
+		#print (temp.shape, temp2.shape, tempX.shape)
+
+	return outX[1:], to_categorical(arr_to_vocab(strY, vocabFrom), dictLen)
