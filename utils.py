@@ -171,8 +171,8 @@ def untokenize(nps_chatTokenized):
 	'''
 	takes a tokenized nps_chat dataset and returns a string list
 	'''
-	with MosesDetokenizer('en') as detokenizer:
-		return [detokenizer(i) for i in nps_chatTokenized]
+	detok = MosesDetokenizer(lang='en')
+	return [detok.detokenize(i) for i in nps_chatTokenized]
 
 def arr_to_vocab(arr, vocab):
 	'''
