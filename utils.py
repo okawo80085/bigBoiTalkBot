@@ -1,10 +1,12 @@
 import nltk
 from nltk.corpus import nps_chat
+from nltk.corpus import names
 from mosestokenizer import MosesDetokenizer
 import re
 import numpy as np
+import random
 
-def clean_text(text):
+def clean_text(text, vocab):
 	'''
 	normalizes the string
 	'''
@@ -45,6 +47,10 @@ def clean_text(text):
 
 	text = re.sub(r' +', ' ', text.strip(' '))
 
+	for i in text:
+		if i not in vocab:
+			text = text.replace(i, '')
+
 	return text
 
 def proc_text(msgObj, vocab):
@@ -56,18 +62,15 @@ def proc_text(msgObj, vocab):
 		x = '<@{}>'.format(i.id)
 		text = re.sub(x, 'U{}'.format(str(i.id)[:2]), text)
 
-	text = clean_text(text)
-
-	for i in text:
-		if i not in vocab:
-			text = text.replace(i, '')
-
-	return text
+	return clean_text(text, vocab)
 
 def get_dataset():
 	'''
 	removes most not natural messages from the nps_chat dataset and returns it
+	also replaces user ids with random names
 	'''
+	nameList = list(names.words())
+
 	posts = list(nps_chat.posts())
 
 	#removing the START, JOIN, PART messages
@@ -102,6 +105,7 @@ def get_dataset():
 	re_pat4 = re.compile('^[.] [3-9] |^[1-2][0-9] [/] [a-m]')
 	re_pat5 = re.compile('^[!] \w+|^UnScramble|^U\d+ [(] U\d+|^[:] U\d+')
 	re_pat6 = re.compile('^[.] Question |^[.] Scorpio |^[.] Rooster ')
+	re_pat7 = re.compile('U\d+')
 
 	for index, i in enumerate(posts):
 		to_search = ' '.join(i)
@@ -153,6 +157,14 @@ def get_dataset():
 			posts[index] = i[3:]
 			#print (posts[index])
 
+	for index, i in enumerate(posts):
+		to_search = ' '.join(i)
+
+		if re_pat7.search(to_search) != None:
+			for index2, j in enumerate(i):
+				if re_pat7.search(j) != None:
+					posts[index][index2] = random.choice(nameList)
+
 	return posts
 
 def untokenize(nps_chatTokenized):
@@ -164,11 +176,11 @@ def untokenize(nps_chatTokenized):
 
 def arr_to_vocab(arr, vocab):
 	'''
-	returns a provided array converted with provided vocab dict, all array elements have to be in the vocab, but not all vocab elements have to be in the input array
+	returns a provided array converted with provided vocab dict, all array elements have to be in the vocab, but not all vocab elements have to be in the input array, works with strings too
 	'''
 	return [vocab[i] for i in arr]
 
-def dataset_to_inputs(textList, vocab):
+def dataset_to_XY(textList, vocab, maxLen=200):
 	to_vocab = {}
 	from_vocab = {}
 
@@ -176,6 +188,20 @@ def dataset_to_inputs(textList, vocab):
 		to_vocab[vocab.index(i)] = i
 		from_vocab[i] = vocab.index(i)
 
-	outX = np.array([np.zeros(400)], dtype=np.float32)
+	X = []
+	Y = []
 
-	return to_vocab, from_vocab
+	for index, i in enumerate(textList[:-1]):
+		tempY = clean_text(textList[index+1], vocab)
+		tempX = clean_text(i, vocab)
+
+		if len(tempX) <= maxLen and len(tempY) <= maxLen:
+			for j in range(len(tempY)):
+
+				X.append([tempY[:j], tempX])
+				Y.append(tempY[j])
+
+			X.append([tempY, tempX])
+			Y.append(None)
+
+	return X, Y, to_vocab, from_vocab
