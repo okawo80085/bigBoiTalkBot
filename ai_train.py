@@ -10,6 +10,9 @@ import utils
 
 print (tf.__version__)
 
+EPOCHS = 200
+BATCH = 1000
+
 def make_model():
 	model = ker.Sequential()
 
@@ -53,22 +56,14 @@ except Exception as e:
 	print (e)
 	pass
 
-raw_data = utils.untokenize(utils.get_dataset())
-
-vocab = sorted([chr(i) for i in range(32, 127) if i != 96])
-vocab.insert(0, None)
-
-str_x, str_y, toV, fromV = utils.dataset_to_XY(raw_data, vocab)
-
-X, Y = utils.XY_to_train(str_x[:1000], str_y[:1000], fromV)
+X, Y = utils.load_train_data('train_data.npz')
 
 #print (X, Y)
 print (X.shape, Y.shape)
-print (len(str_x), len(str_y))
 
 print ('='*20, 'starting training', '='*20)
 
-generator_model.fit(X, Y, epochs=20, batch_size=500, shuffle=True, callbacks=[tb_callback])
+generator_model.fit(X, Y, epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
 
 generator_model.save('bigBoiAI.h5')
 

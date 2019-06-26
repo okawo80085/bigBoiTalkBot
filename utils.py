@@ -243,3 +243,10 @@ def XY_to_train(strX, strY, vocabFrom, maxLen=200, dictLen=95):
 	print ('='*20, 'done', '='*20)
 
 	return outX[1:], to_categorical(arr_to_vocab(strY, vocabFrom), dictLen)
+
+def save_train_data(name, x, y):
+	np.savez(name, X=x, Y=y)
+
+def load_train_data(name):
+	data = np.load(name)
+	return data['X'], data['Y']
