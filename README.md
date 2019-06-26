@@ -22,14 +22,22 @@ and Python3 😃
 to train the model you need to pre-process the training data first
 
 to pre-process the data, run
-```python3 data_processing.py```
+```python
+python3 data_processing.py
+```
 or
-```python data_processing.py```
+```python
+python data_processing.py
+```
 
 to train the model, run
-```python3 ai_train.py```
+```python
+python3 ai_train.py
+```
 or
-```python ai_train.py```
+```python
+python ai_train.py
+```
 
 
 
