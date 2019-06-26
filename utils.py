@@ -4,6 +4,9 @@ from mosestokenizer import MosesDetokenizer
 import re
 
 def clean_text(text):
+	'''
+	normalizes the string
+	'''
 	chars = {'\'':[u"\u0060", u"\u00B4", u"\u2018", u"\u2019"], 'a':[u"\u00C0", u"\u00C1", u"\u00C2", u"\u00C3", u"\u00C4", u"\u00C5", u"\u00E0", u"\u00E1", u"\u00E2", u"\u00E3", u"\u00E4", u"\u00E5"],
 				'e':[u"\u00C8", u"\u00C9", u"\u00CA", u"\u00CB", u"\u00E8", u"\u00E9", u"\u00EA", u"\u00EB"],
 				'i':[u"\u00CC", u"\u00CD", u"\u00CE", u"\u00CF", u"\u00EC", u"\u00ED", u"\u00EE", u"\u00EF"],
@@ -44,6 +47,9 @@ def clean_text(text):
 	return text
 
 def proc_text(msgObj, vocab):
+	'''
+	converts a Discord message object into a pre-processed string for AI
+	'''
 	text = str(msgObj.content)
 	for i in msgObj.mentions:
 		x = '<@{}>'.format(i.id)
@@ -58,6 +64,9 @@ def proc_text(msgObj, vocab):
 	return text
 
 def get_dataset():
+	'''
+	removes most not natural messages from the nps_chat dataset and returns it
+	'''
 	posts = list(nps_chat.posts())
 
 	#removing the START, JOIN, PART messages
@@ -146,5 +155,11 @@ def get_dataset():
 	return posts
 
 def untokenize(nps_chatTokenized):
+	'''
+	takes a tokenized nps_chat dataset and returns a string list
+	'''
 	with MosesDetokenizer('en') as detokenizer:
 		return [detokenizer(i) for i in nps_chatTokenized]
+
+def dataset_to_inputs(textList):
+	pass
