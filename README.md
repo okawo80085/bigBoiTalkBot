@@ -16,3 +16,21 @@ Nltk packages:
 * ```moses_sample```
 
 and Python3 😃
+
+### training
+
+to train the model you need to pre-process the training data first
+
+to pre-process the data, run
+```python3 data_processing.py```
+or
+```python data_processing.py```
+
+to train the model, run
+```python3 ai_train.py```
+or
+```python ai_train.py```
+
+
+
+```bigBoiAI.h5``` is the model's save file
