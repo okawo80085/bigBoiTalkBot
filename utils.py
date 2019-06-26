@@ -1,7 +1,7 @@
 import nltk
 from nltk.corpus import nps_chat
 from nltk.corpus import names
-from mosestokenizer import MosesDetokenizer
+from sacremoses import MosesDetokenizer
 import re
 import numpy as np
 import random
