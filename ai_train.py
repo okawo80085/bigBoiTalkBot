@@ -43,6 +43,13 @@ generator_model.compile(optimizer=tf.train.AdamOptimizer(0.00003),
 	loss='mse',
 	metrics=['accuracy'])
 
+try:
+	generator_model.load('bigBoiAI.h5')
+
+except Exception as e:
+	print (e)
+	pass
+
 tb_callback = tb(log_dir='log/{}'.format(time.time()))
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')
