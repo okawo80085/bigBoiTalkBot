@@ -11,7 +11,7 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 150
+EPOCHS = 300
 BATCH = 1000
 
 def make_model():
@@ -44,11 +44,11 @@ generator_model = make_model()
 
 generator_model.summary()
 
-generator_model.compile(optimizer=tf.train.AdamOptimizer(0.001),
+generator_model.compile(optimizer=tf.train.AdamOptimizer(0.0005),
 	loss='categorical_crossentropy',
 	metrics=['accuracy'])
 
-tb_callback = tb(log_dir=os.path.normpath('./log'), histogram_freq=0)
+tb_callback = tb(log_dir=os.path.normpath('./log/{}'.format(time.time())), histogram_freq=0)
 
 try:
 	generator_model.load_weights('bigBoiAI.h5')
