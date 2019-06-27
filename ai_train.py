@@ -6,6 +6,7 @@ from tensorflow.keras.callbacks import TensorBoard as tb
 import numpy as np
 import re
 import time
+import os
 import utils
 
 print (tf.__version__)
@@ -43,11 +44,11 @@ generator_model = make_model()
 
 generator_model.summary()
 
-generator_model.compile(optimizer=tf.train.AdamOptimizer(0.0001),
+generator_model.compile(optimizer=tf.train.AdamOptimizer(0.0005),
 	loss='categorical_crossentropy',
 	metrics=['accuracy'])
 
-tb_callback = tb(log_dir='.\\log\\', histogram_freq=0)
+tb_callback = tb(log_dir=os.path.normpath('./log'), histogram_freq=0)
 
 try:
 	generator_model.load_weights('bigBoiAI.h5')
