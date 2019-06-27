@@ -6,7 +6,7 @@ try:
 
 except Exception as e:
 	print (e)
-	print ('failed to load nltk libs, training functions may stop working')
+	print ('failed to load nltk libs, training and data processing functions may stop working')
 
 import re
 import numpy as np
