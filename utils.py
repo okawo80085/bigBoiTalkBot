@@ -1,7 +1,13 @@
-import nltk
-from nltk.corpus import nps_chat
-from nltk.corpus import names
-from sacremoses import MosesDetokenizer
+try:
+	import nltk
+	from nltk.corpus import nps_chat
+	from nltk.corpus import names
+	from sacremoses import MosesDetokenizer
+
+except Exception as e:
+	print (e)
+	print ('failed to load nltk libs, training functions may stop working')
+
 import re
 import numpy as np
 import random
