@@ -61,6 +61,8 @@ python ai_train.py
 
 ```bigBoiAI.h5``` is the model's save file
 
+training data will be uploaded later
+
 ## using the AI/neural network in predict mode/talking with it!!!
 this functionality is complitley incomporated in ```bbtb.py``` i. e. **bigBoiTalkBot**, but if you want to just test out the AI after training
 
