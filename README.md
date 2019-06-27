@@ -40,5 +40,17 @@ python ai_train.py
 ```
 
 
-
 ```bigBoiAI.h5``` is the model's save file
+
+## using the ai in predict mode
+
+run
+```python
+python3 ai_chat.py
+```
+or
+```python
+python ai_chat.py
+```
+
+and try to chat with it, note that it's severally under-trained
