@@ -12,7 +12,8 @@ import utils
 print (tf.__version__)
 
 EPOCHS = 300
-BATCH = 1000
+BATCH = 2000
+STEP = 0.0007
 
 def make_model():
 	model = ker.Sequential()
@@ -44,7 +45,7 @@ generator_model = make_model()
 
 generator_model.summary()
 
-generator_model.compile(optimizer=tf.train.AdamOptimizer(0.0005),
+generator_model.compile(optimizer=tf.train.AdamOptimizer(STEP),
 	loss='categorical_crossentropy',
 	metrics=['accuracy'])
 
