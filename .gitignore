@@ -10,3 +10,5 @@
 *.profile-empty
 *.trace
 *.db
+*.out
+*.tfevents
