@@ -235,7 +235,9 @@ def pad_right(arr, maxLen):
 		return np.concatenate((arr, np.zeros(maxLen-arr.shape[0])))
 
 def XY_to_train(strX, strY, vocabFrom, maxLen=200, dictLen=95):
-
+	'''
+	converts "bag of words" data to model accepteble training data
+	'''
 	outX = np.array([np.zeros(400)], dtype=np.float32)
 
 	dataLen = len(strY)
