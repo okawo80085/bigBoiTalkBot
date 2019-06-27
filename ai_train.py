@@ -11,7 +11,7 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 100
+EPOCHS = 150
 BATCH = 1000
 
 def make_model():
@@ -44,7 +44,7 @@ generator_model = make_model()
 
 generator_model.summary()
 
-generator_model.compile(optimizer=tf.train.AdamOptimizer(0.0005),
+generator_model.compile(optimizer=tf.train.AdamOptimizer(0.001),
 	loss='categorical_crossentropy',
 	metrics=['accuracy'])
 
