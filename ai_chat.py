@@ -1,6 +1,7 @@
 import tensorflow as tf
 from tensorflow.keras.models import load_model
 
+import re
 import utils
 
 print (tf.__version__)
@@ -28,6 +29,6 @@ while 1:
 
 	print (ix)
 	#print (ix_prob)
-	print ([''.join(resp).strip(' ')])
+	print (re.sub('[ ]+', ' ', ''.join(resp).strip(' ')))
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')
