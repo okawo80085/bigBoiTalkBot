@@ -42,7 +42,7 @@ python ai_train.py
 
 ```bigBoiAI.h5``` is the model's save file
 
-## using the ai in predict mode
+## using the ai in predict mode/talking with it!!!
 
 run
 ```python
