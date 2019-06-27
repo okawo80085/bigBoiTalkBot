@@ -2,6 +2,8 @@ made for discord hack week by okawo#0901 and Dr. Big Cashew PhD Rodent TV#4485.
 A chating bot using AI and ```tensorflow```!
 
 
+[invite the bot](https://discordapp.com/api/oauth2/authorize?client_id=592786784065159188&permissions=37215296&scope=bot)
+
 ### requirements
 
 Python libs:
