@@ -36,7 +36,7 @@ vocab.insert(0, None)
 
 
 BOT_PREFIX = '!'
-TOKEN = 'NTkyNzg2Nzg0MDY1MTU5MTg4.XRIoEQ.oRCPkB6eytfNmLDGCpKDtX-BuuU'
+TOKEN = 'your token'
 
 gameStat = 'with idiots'
 
@@ -54,7 +54,7 @@ async def on_message(msg):
 
 	if re.search('^[!]halp', str(msg.content)) != None:
 		await bop.send_typing(msg.channel)
-		await bop.send_message(msg.channel, 'hi, im a bot... i talk mad shit\nmade by okawo#0901 and Dr. Big Cashew PhD Rodent TV#4485\n{}'.format(our_github_repo_link))
+		await bop.send_message(msg.channel, 'hi, im a bot... i talk mad shit\nim made by okawo#0901 and Dr. Big Cashew PhD Rodent TV#4485\nmy home:\n{}'.format(our_github_repo_link))
 
 	elif len(proced) <= 200:
 		await bop.send_typing(msg.channel)
