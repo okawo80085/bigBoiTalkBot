@@ -49,7 +49,7 @@ generator_model.compile(optimizer=tf.train.AdamOptimizer(STEP),
 	loss='categorical_crossentropy',
 	metrics=['accuracy'])
 
-tb_callback = tb(log_dir=os.path.normpath('./log/{}{}'.format(time.time()), STEP), histogram_freq=0)
+tb_callback = tb(log_dir=os.path.normpath('./log/{}{}'.format(time.time(), STEP)), histogram_freq=0)
 
 try:
 	generator_model.load_weights('bigBoiAI.h5')
