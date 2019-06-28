@@ -68,7 +68,7 @@ python ai_train.py
 ```bigBoiAI.h5``` is the model's save file
 
 ~~training data will be uploaded later~~ training data:
-https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV
+[our training data](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
 ## using the AI/neural network in predict mode/talking with it!!!
 this functionality is complitley incomporated in ```bbtb.py``` i. e. **bigBoiTalkBot**, but if you want to just test out the AI after training
@@ -85,6 +85,14 @@ python ai_chat.py
 
 and try to chat with it, note that it's severally under-trained
 
+
+## how it works
+
+we have an RNN neural network model, trained on normalized nps_chat corpus data, to predict the next character basted on the user input and characters it generated before.
+
+we achived some progress with training but it seems that model design needs to be improved and/or our training data switched, to reddit data for example, and way more training.
+
+out right switching from an RNN to a Seq2Seq model might also help.
 
 ## bugs
 
