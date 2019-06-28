@@ -6,7 +6,7 @@ import utils
 
 print (tf.__version__)
 
-modelSaveFileName = 'bigBoiAI.h5'
+modelSaveFileName = 'bigBoiAI_v2.h5'
 
 try:
 	botModel = load_model(modelSaveFileName)
