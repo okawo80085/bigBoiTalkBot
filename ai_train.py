@@ -11,9 +11,9 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 150
-BATCH = 2000
-STEP = 0.0003
+EPOCHS = 300
+BATCH = 4000
+STEP = 0.0001
 
 def make_model():
 	model = ker.Sequential()
@@ -23,7 +23,7 @@ def make_model():
 	model.add(l.BatchNormalization())
 	model.add(l.LeakyReLU())
 	#model.add(l.Flatten())
-	
+
 	model.add(l.Reshape((1, 400)))
 	assert model.output_shape == (None, 1, 400)
 
@@ -49,7 +49,7 @@ generator_model.compile(optimizer=tf.train.AdamOptimizer(STEP),
 	loss='categorical_crossentropy',
 	metrics=['accuracy'])
 
-tb_callback = tb(log_dir=os.path.normpath('./log/{}'.format(time.time())), histogram_freq=0)
+tb_callback = tb(log_dir=os.path.normpath('./log/{}{}'.format(time.time()), STEP), histogram_freq=0)
 
 try:
 	generator_model.load_weights('bigBoiAI.h5')
