@@ -4,6 +4,8 @@ A chating bot using AI and ```tensorflow```!
 
 [invite the bot](https://discordapp.com/api/oauth2/authorize?client_id=592786784065159188&permissions=37215296&scope=bot)
 
+some people named him `aiol`
+
 ### requirements
 
 Python libs:
