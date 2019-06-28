@@ -44,9 +44,9 @@ python bbtb.py
 
 ### training the AI/neural network model
 
-to train the model you need to pre-process the training data AT LEAST ONCE first or download [our dataset](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
+to train the model you need to pre-process the training data AT LEAST ONCE first or download [our training data](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
-to pre-process the data, run
+to pre-process the data, run, optional if you downloaded [our training data](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV) 
 ```python
 python3 data_processing.py
 ```
