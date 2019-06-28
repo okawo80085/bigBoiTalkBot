@@ -27,6 +27,8 @@ and Python3 😃
 
 to run the bot you need to have all dependencies installed
 
+replace ```TOKEN = 'your token'``` with your actual bot token
+
 and to start the bot run
 ```python
 python3 bbtb.py
