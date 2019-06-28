@@ -11,9 +11,9 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 100
-BATCH = 20000
-STEP = 0.003
+EPOCHS = 300
+BATCH = 25000
+STEP = 0.00085
 
 def make_model():
 	model = ker.Sequential()
