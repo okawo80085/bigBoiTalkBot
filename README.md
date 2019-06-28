@@ -4,6 +4,8 @@ A chating bot using AI and ```tensorflow```!
 
 [invite the bot](https://discordapp.com/api/oauth2/authorize?client_id=592786784065159188&permissions=37215296&scope=bot)
 
+some people named him `aiol`
+
 ### requirements
 
 Python libs:
@@ -27,6 +29,8 @@ and Python3 😃
 
 to run the bot you need to have all dependencies installed
 
+replace ```TOKEN = 'your token'``` with your actual bot token
+
 and to start the bot run
 ```python
 python3 bbtb.py
@@ -40,7 +44,7 @@ python bbtb.py
 
 ### training the AI/neural network model
 
-to train the model you need to pre-process the training data, AT LEAST ONCE, first
+to train the model you need to pre-process the training data AT LEAST ONCE first or download [our dataset](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
 to pre-process the data, run
 ```python
@@ -63,7 +67,8 @@ python ai_train.py
 
 ```bigBoiAI.h5``` is the model's save file
 
-training data will be uploaded later
+~~training data will be uploaded later~~ training data:
+https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV
 
 ## using the AI/neural network in predict mode/talking with it!!!
 this functionality is complitley incomporated in ```bbtb.py``` i. e. **bigBoiTalkBot**, but if you want to just test out the AI after training
