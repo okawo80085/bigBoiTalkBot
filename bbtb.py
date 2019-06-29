@@ -18,7 +18,7 @@ print (tf.__version__)
 
 our_github_repo_link = 'https://github.com/okawo80085/bigBoiTalkBot'
 
-modelSaveFileName = 'bigBoiAI.h5'
+modelSaveFileName = 'bigBoiAI_v2.h5'
 
 try:
 	botModel = load_model(modelSaveFileName)
