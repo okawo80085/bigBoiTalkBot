@@ -276,12 +276,9 @@ def find_dominant_neuron(tensor_1D):
 	'''
 	finds a dominant neuron and returns its probabillity and index
 	'''
-	temp = []
+	neuron_index = np.argmax(tensor_1D)
 
-	for index, i in enumerate(tensor_1D):
-		temp.append([index, i])
-
-	return sorted(temp, key=lambda a: a[1])[-1]
+	return [neuron_index, tensor_1D[neuron_index]]
 
 def generate_a_reply(model, textInput, vocab, maxLen=200):
 	'''
