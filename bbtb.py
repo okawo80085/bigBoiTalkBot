@@ -48,9 +48,9 @@ bop = Bot(command_prefix=BOT_PREFIX)
 async def on_message(msg):
 	if msg.author == bop.user:
 		return
-	print ('{} > {} : {}'.format(msg.channel, msg.author, msg.content))
-
 	proced = utils.proc_text(msg, vocab)
+
+	print ('{} > {} : {}'.format(msg.channel, msg.author, proced))
 
 	if re.search('^[!]halp', str(msg.content)) != None:
 		await bop.send_typing(msg.channel)
