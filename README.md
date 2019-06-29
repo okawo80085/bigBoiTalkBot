@@ -6,6 +6,8 @@ A chating bot using AI and ```tensorflow```!
 
 some people named him `aiol`
 
+#### use test branch for a new model, the bot that is currently up is is running of test branch code
+
 ### requirements
 
 Python libs:
