@@ -17,11 +17,11 @@ STEP = 0.00065
 
 SAVE_NAME = 'bigBoiAI_v2.h5'
 
-def make_model():
+def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()
 
 	# input
-	model.add(l.Dense(2*200, use_bias=False, input_shape=(2*200,)))
+	model.add(l.Dense(2*200, use_bias=False, input_shape=input_dim))
 	model.add(l.BatchNormalization())
 	model.add(l.LeakyReLU())
 	#model.add(l.Flatten())
@@ -38,7 +38,7 @@ def make_model():
 
 	# output
 	model.add(l.Flatten())
-	model.add(l.Dense(95, activation='softmax'))
+	model.add(l.Dense(out_dim, activation='softmax'))
 	assert model.output_shape == (None, 95)
 
 	return model
