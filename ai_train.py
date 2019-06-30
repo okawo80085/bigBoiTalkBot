@@ -12,8 +12,10 @@ import utils
 print (tf.__version__)
 
 EPOCHS = 300
-BATCH = 4000
-STEP = 0.0001
+BATCH = 25000
+STEP = 0.00085
+
+SAVE_NAME = 'bigBoiAI_v2.h5'
 
 def make_model():
 	model = ker.Sequential()
@@ -28,10 +30,10 @@ def make_model():
 	assert model.output_shape == (None, 1, 400)
 
 	# hidden layers
+	model.add(l.GRU(128, return_sequences=True, activation='relu'))
+	model.add(l.GRU(64, return_sequences=True, activation='relu'))
 	model.add(l.GRU(64, return_sequences=True, activation='relu'))
 	model.add(l.GRU(32, return_sequences=True, activation='relu'))
-	model.add(l.GRU(32, return_sequences=True, activation='relu'))
-	model.add(l.GRU(16, return_sequences=True, activation='relu'))
 
 
 	# output
@@ -49,10 +51,10 @@ generator_model.compile(optimizer=tf.train.AdamOptimizer(STEP),
 	loss='categorical_crossentropy',
 	metrics=['accuracy'])
 
-tb_callback = tb(log_dir=os.path.normpath('./log/{}_step_{}'.format(time.time(), STEP)), histogram_freq=0)
+tb_callback = tb(log_dir=os.path.normpath('./log/{}_step_{}_batch_{}'.format(SAVE_NAME, STEP, BATCH)), histogram_freq=0)
 
 try:
-	generator_model.load_weights('bigBoiAI.h5')
+	generator_model.load_weights(SAVE_NAME)
 
 except Exception as e:
 	print (e)
@@ -67,7 +69,7 @@ print ('='*20, 'starting training', '='*20)
 
 generator_model.fit(X, Y, epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
 
-generator_model.save('bigBoiAI.h5')
+generator_model.save(SAVE_NAME)
 
 print ('='*20, 'done', '='*20)
 
