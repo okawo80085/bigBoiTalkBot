@@ -31,8 +31,7 @@ except Exception as e:
 
 botModel.summary()
 
-vocab = sorted([chr(i) for i in range(32, 127) if i != 96])
-vocab.insert(0, None)
+vocab = utils.vocab
 
 
 BOT_PREFIX = '!'
