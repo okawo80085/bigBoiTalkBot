@@ -6,7 +6,7 @@ A chating bot using AI and ```tensorflow```!
 
 some people named him `aiol`
 
-#### use test branch for a new model, the bot, that is currently up, is running of test branch code
+#### ~~use test branch for a new model, the bot, that is currently up, is running of test branch code~~, test branch code is now marged with master
 
 ### requirements
 
