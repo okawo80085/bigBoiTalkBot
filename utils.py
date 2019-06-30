@@ -32,7 +32,7 @@ def clean_text(text, vocab):
 
 	text = text.replace('&', ' and ')
 	text = re.sub(r'\.( +\.)+', '..', text)
-	text = re.sub(r'\.\.+', ' ^ ', text)
+	#text = re.sub(r'\.\.+', ' ^ ', text)
 	text = re.sub(r',+', ',', text)
 	text = re.sub(r'\-+', '-', text)
 	text = re.sub(r'\?+', ' ? ', text)
@@ -49,8 +49,8 @@ def clean_text(text, vocab):
 	text = text.replace(" '", " ")
 	text = text.replace("' ", " ")
 
-	for c in ".,:":
-		text = text.replace(c + ' ', ' ' + c + ' ')
+	#for c in ".,:":
+	#	text = text.replace(c + ' ', ' ' + c + ' ')
 
 	text = re.sub(r' +', ' ', text.strip(' '))
 
