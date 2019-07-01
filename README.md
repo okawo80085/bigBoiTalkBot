@@ -46,7 +46,7 @@ python bbtb.py
 
 ### training the AI/neural network model
 
-to train the model you need to pre-process the training data AT LEAST ONCE first or download [train_data_big_v3_only.npz (out training data)](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
+to train the model you need to pre-process the training data AT LEAST ONCE first or download [train_data_big_v3_only.npz (our training data)](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
 optional if you downloaded [train_data_big_v3_only.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV), to pre-process the data, run
 ```python
