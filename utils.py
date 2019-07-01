@@ -13,7 +13,7 @@ import numpy as np
 import random
 from tensorflow.keras.utils import to_categorical
 
-vocab = sorted([chr(i) for i in range(32, 127) if i != 96])
+vocab = list(' \nAaBbCcDdEeFfGgHhIiJjKkLlMmNnOoPpQqRrSsTtUuVvWwXxYyZz([{}])\\/|1234567890@#$%^&*+=-_,.!?:;\'"~<>')
 vocab.insert(0, None)
 
 def clean_text(text, vocab):
