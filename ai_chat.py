@@ -6,7 +6,7 @@ import utils
 
 print (tf.__version__)
 
-modelSaveFileName = 'bigBoiAI_v2.h5'
+modelSaveFileName = 'bigBoiAI_v3.h5'
 
 try:
 	botModel = load_model(modelSaveFileName)
@@ -17,8 +17,7 @@ except Exception as e:
 
 botModel.summary()
 
-vocab = sorted([chr(i) for i in range(32, 127) if i != 96])
-vocab.insert(0, None)
+vocab = utils.vocab
 
 print (vocab)
 
