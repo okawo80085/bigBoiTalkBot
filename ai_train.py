@@ -11,9 +11,9 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 100
+EPOCHS = 800
 BATCH = 51000
-STEP = 0.0002
+STEP = 0.0001
 
 SAVE_NAME = 'bigBoiAI_v3.h5'
 
