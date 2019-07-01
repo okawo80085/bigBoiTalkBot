@@ -74,7 +74,7 @@ def proc_text(msgObj, vocab):
 	text = str(msgObj.content)
 	for i in msgObj.mentions:
 		x = '<@{}>'.format(i.id)
-		text = re.sub(x, '{}'.format(str(i.name)[:random.choice([3, 4, 5, 2])]), text)
+		text = re.sub(x, '{}'.format(str(i.name)[:5]), text)
 
 	return clean_text(text, vocab)
 
