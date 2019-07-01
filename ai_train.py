@@ -11,11 +11,11 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 1000
-BATCH = 25000
-STEP = 0.00065
+EPOCHS = 700
+BATCH = 51000
+STEP = 0.00085
 
-SAVE_NAME = 'bigBoiAI_v2.h5'
+SAVE_NAME = 'bigBoiAI_v3.h5'
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()
@@ -34,16 +34,17 @@ def make_model(input_dim=(400,), out_dim=95):
 	model.add(l.GRU(64, return_sequences=True, activation='relu'))
 	model.add(l.GRU(64, return_sequences=True, activation='relu'))
 	model.add(l.GRU(32, return_sequences=True, activation='relu'))
+	model.add(l.GRU(64, return_sequences=True, activation='relu'))
 
 
 	# output
 	model.add(l.Flatten())
 	model.add(l.Dense(out_dim, activation='softmax'))
-	assert model.output_shape == (None, 95)
+	assert model.output_shape == (None, out_dim)
 
 	return model
 
-generator_model = make_model()
+generator_model = make_model(out_dim=len(utils.vocab))
 
 generator_model.summary()
 
@@ -60,7 +61,7 @@ except Exception as e:
 	print (e)
 	pass
 
-X, Y = utils.load_train_data('train_data.npz')
+X, Y = utils.load_train_data('train_data_big.npz')
 
 #print (X, Y)
 print (X.shape, Y.shape)
