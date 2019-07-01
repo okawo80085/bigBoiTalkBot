@@ -46,9 +46,9 @@ python bbtb.py
 
 ### training the AI/neural network model
 
-to train the model you need to pre-process the training data AT LEAST ONCE first or download [our training data](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
+to train the model you need to pre-process the training data AT LEAST ONCE first or download [train_data_big_v3_only.npz (out training data)](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
-to pre-process the data, run, optional if you downloaded [our training data](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV) 
+optional if you downloaded [train_data_big_v3_only.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV), to pre-process the data, run
 ```python
 python3 data_processing.py
 ```
@@ -70,7 +70,7 @@ python ai_train.py
 ```bigBoiAI.h5``` is the model's save file
 
 ~~training data will be uploaded later~~ training data:
-[train_data_big_v2_only.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
+[train_data_big_v3_only.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
 note: `train_data_big_v2_only.npz` works with v3 model and new vocab only, if you want to use the old dataset you need to change models to v2 or v1 and use `old_vocab` from `utils.py`
 
