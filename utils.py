@@ -74,7 +74,14 @@ def proc_text(msgObj, vocab):
 	text = str(msgObj.content)
 	for i in msgObj.mentions:
 		x = '<@{}>'.format(i.id)
-		text = re.sub(x, '{}'.format(str(i.name)[:5]), text)
+		x2 = '<@!{}>'.format(i.id)
+		if i.nick != None:
+			text = re.sub(x2, '{}'.format(str(i.nick)[:5]), text)
+
+		else:
+			text = re.sub(x, '{}'.format(str(i.name)), text)
+
+		text = re.sub('[<][@][&]\d+[>]', '', text)
 
 	return clean_text(text, vocab)
 
