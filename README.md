@@ -72,7 +72,16 @@ python ai_train.py
 ~~training data will be uploaded later~~ training data:
 [train_data_big_v3_only.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
-note: `train_data_big_v3_only.npz` works with v3 model and new vocab only, if you want to use our old dataset you need to change models to v2 or v1 and use `old_vocab` from `utils.py`
+note: `train_data_big_v3_only.npz` works with v3 model and new vocab only, if you want to use our old dataset you need to change models from v3 to v2 or v1 and use `old_vocab` from `utils.py`
+
+**vocab examples**
+```python
+>>> utils.vocab 	# new vocab, works with v3 model only
+[None, ' ', '\n', 'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z', '(', '[', '{', '}', ']', ')', '\\', '/', '|', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '@', '#', '$', '%', '^', '&', '*', '+', '=', '-', '_', ',', '.', '!', '?', ':', ';', "'", '"', '~', '<', '>']
+
+>>> utils.old_vocab 	# old vocab, works with models v1 and v2
+[None, ' ', '!', '"', '#', '$', '%', '&', "'", '(', ')', '*', '+', ',', '-', '.', '/', '0', '1', '2', '3', '4', '5', '6', '7', '8', '9', ':', ';', '<', '=', '>', '?', '@', 'A', 'B', 'C', 'D', 'E', 'F', 'G', 'H', 'I', 'J', 'K', 'L', 'M', 'N', 'O', 'P', 'Q', 'R', 'S', 'T', 'U', 'V', 'W', 'X', 'Y', 'Z', '[', '\\', ']', '^', '_', 'a', 'b', 'c', 'd', 'e', 'f', 'g', 'h', 'i', 'j', 'k', 'l', 'm', 'n', 'o', 'p', 'q', 'r', 's', 't', 'u', 'v', 'w', 'x', 'y', 'z', '{', '|', '}', '~']
+```
 
 ## using the AI/neural network in predict mode/talking with it!!!
 this functionality is complitley incomporated in ```bbtb.py``` i. e. **bigBoiTalkBot**, but if you want to just test out the AI after training
