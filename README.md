@@ -72,7 +72,7 @@ python ai_train.py
 ~~training data will be uploaded later~~ training data:
 [train_data_big_v3_only.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
-note: `train_data_big_v3_only.npz` works with v3 model and new vocab only, if you want to use the old dataset you need to change models to v2 or v1 and use `old_vocab` from `utils.py`
+note: `train_data_big_v3_only.npz` works with v3 model and new vocab only, if you want to use our old dataset you need to change models to v2 or v1 and use `old_vocab` from `utils.py`
 
 ## using the AI/neural network in predict mode/talking with it!!!
 this functionality is complitley incomporated in ```bbtb.py``` i. e. **bigBoiTalkBot**, but if you want to just test out the AI after training
