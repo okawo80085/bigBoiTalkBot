@@ -109,4 +109,4 @@ out right switching from an RNN to a Seq2Seq model might also help.
 
 ## bugs
 
-if you have any problems or bugs while running the code, feel free to open an issue on this repo
+report them here
