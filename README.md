@@ -42,6 +42,8 @@ or
 python bbtb.py
 ```
 
+this will run the bot using the v3 model
+
 **have fun :D**
 
 ### training the AI/neural network model
@@ -96,7 +98,7 @@ or
 python ai_chat.py
 ```
 
-and try to chat with it, note that it's severally under-trained
+and try to chat with it, note that it's ~~severally~~ a bit under-trained
 
 
 ## how it works
