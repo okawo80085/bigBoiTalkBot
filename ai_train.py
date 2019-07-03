@@ -11,7 +11,7 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 900
+EPOCHS = 200
 BATCH = 51000
 STEP = 0.0001
 
