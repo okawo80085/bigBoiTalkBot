@@ -13,7 +13,7 @@ print (tf.__version__)
 
 EPOCHS = 300
 BATCH = 52000
-STEP = 0.00008
+STEP = 0.000075
 
 SAVE_NAME = 'bigBoiAI_v3.1.h5'
 
