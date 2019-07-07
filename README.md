@@ -42,7 +42,7 @@ or
 python bbtb.py
 ```
 
-this will run the bot using the v3 model
+this will run the bot using the v3.1 model
 
 **have fun :D**
 
@@ -74,11 +74,11 @@ python ai_train.py
 ~~training data will be uploaded later~~ training data:
 [train_data_big_v3_only.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
-note: `train_data_big_v3_only.npz` works with v3 model and new vocab only, if you want to use our old dataset you need to change models from v3 to v2 or v1 and use `old_vocab` from `utils.py`
+note: `train_data_big_v3_only.npz` works with v3 or higher models and new vocab only, if you want to use our old dataset you need to change models to v2 or v1 and use `old_vocab` from `utils.py`
 
 **vocab examples**
 ```python
->>> utils.vocab 	# new vocab, works with v3 model only
+>>> utils.vocab 	# new vocab, works with v3 or higher models only
 [None, ' ', '\n', 'A', 'a', 'B', 'b', 'C', 'c', 'D', 'd', 'E', 'e', 'F', 'f', 'G', 'g', 'H', 'h', 'I', 'i', 'J', 'j', 'K', 'k', 'L', 'l', 'M', 'm', 'N', 'n', 'O', 'o', 'P', 'p', 'Q', 'q', 'R', 'r', 'S', 's', 'T', 't', 'U', 'u', 'V', 'v', 'W', 'w', 'X', 'x', 'Y', 'y', 'Z', 'z', '(', '[', '{', '}', ']', ')', '\\', '/', '|', '1', '2', '3', '4', '5', '6', '7', '8', '9', '0', '@', '#', '$', '%', '^', '&', '*', '+', '=', '-', '_', ',', '.', '!', '?', ':', ';', "'", '"', '~', '<', '>']
 
 >>> utils.old_vocab 	# old vocab, works with models v1 and v2
