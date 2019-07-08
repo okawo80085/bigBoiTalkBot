@@ -210,14 +210,14 @@ def arr_to_vocab(arr, vocab):
 
 def dataset_to_XY(textList, vocab, maxLen=200):
 	'''
-	converts text data into a "bag of words" data, also generates vocab dicts 
+	converts text data into a "bag of letters" data, also generates vocab dicts 
 	'''
 	to_vocab = {}
 	from_vocab = {}
 
-	for i in vocab:
-		to_vocab[vocab.index(i)] = i
-		from_vocab[i] = vocab.index(i)
+	for index, i in enumerate(vocab):
+		to_vocab[index] = i
+		from_vocab[i] = index
 
 	X = []
 	Y = []
