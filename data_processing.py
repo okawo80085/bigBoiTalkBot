@@ -12,6 +12,17 @@ BATCH_SIZE = int(input('batch size? '))
 if DATA_TO_PROCESS > len(raw_data):
 	DATA_TO_PROCESS = len(raw_data)
 
+pat = re.compile('^[hH][iI]|^[hH][eE][lL][Ll][Oo]')
+
+hi_count = 0
+
+for i in raw_data:
+	if pat.search(i) is not None:
+		hi_count += 1
+
+print ('{} "hi" in dataset'.format(hi_count/len(raw_data)))
+
+
 vocab = sorted([chr(i) for i in range(32, 127) if i != 96])
 vocab.insert(0, None)
 
@@ -19,6 +30,7 @@ str_x, str_y, toV, fromV = utils.dataset_to_XY(raw_data[:DATA_TO_PROCESS], vocab
 
 print ('to start processing {} of data, press any key'.format(len(str_x)))
 input()
+print ('{:=^40}'.format(' starting '))
 
 x_shape, y_shape = utils.XY_to_train([str_x[1]], [str_y[1]], fromV)
 
@@ -42,7 +54,7 @@ while len(str_x) > 0:
 
 utils.save_train_data('train_data.npz', X[1:], Y[1:])
 
-print ('data loaded:', X.shape, Y.shape)
+print ('data loaded:', X[1:].shape, Y[1:].shape)
 print ('data available:', len(str_x), len(str_y))
 
-print ('='*20, 'data saved', '='*20)
+print ('{:=^40}'.format(' data saved '))
