@@ -33,7 +33,12 @@ with open('test.txt', 'rt') as f:
 
 		text = re.sub('[ ]+', ' ', ''.join(resp).strip(' '))
 
-		model_score.append(t.flesch_reading_ease(text))
+		score = t.flesch_reading_ease(text)
+
+		if re.search('^[hH][iI] [a-zA-Z0-9.,/?! <>():;\'"{}=+_~]+|\w{10,200}', text) is not None:
+			score -= 100
+
+		model_score.append(score)
 		test_score.append(t.flesch_reading_ease(i[:-1]))
 
 		print (f'user: {in_text}')
