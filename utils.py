@@ -256,7 +256,7 @@ def XY_to_train(strX, strY, vocabFrom, maxLen=200, dictLen=95):
 
 	dataLen = len(strY)
 
-	print ('='*20, 'starting data convertion', '='*20)
+	print ('{:=^40}'.format(' converting data '))
 
 	for index, i in enumerate(strX):
 		temp = pad_right(np.array(arr_to_vocab(i[0], vocabFrom), dtype=np.float32), maxLen)
@@ -269,7 +269,7 @@ def XY_to_train(strX, strY, vocabFrom, maxLen=200, dictLen=95):
 
 		#print (temp.shape, temp2.shape, tempX.shape)
 	
-	print ('='*20, 'done', '='*20)
+	print ('{:=^40}'.format(' done '))
 
 	return outX[1:], to_categorical(arr_to_vocab(strY, vocabFrom), dictLen)
 
