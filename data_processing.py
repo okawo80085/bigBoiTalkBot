@@ -54,7 +54,7 @@ while len(str_x) > 0:
 
 utils.save_train_data('train_data.npz', X[1:], Y[1:])
 
-print ('data loaded:', X[1:].shape, Y[1:].shape)
+print ('data saved:', X[1:].shape, Y[1:].shape)
 print ('data available:', len(str_x), len(str_y))
 
 print ('{:=^40}'.format(' data saved '))
