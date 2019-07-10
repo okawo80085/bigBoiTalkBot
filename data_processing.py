@@ -21,6 +21,8 @@ print ('to start processing {} of data, press any key'.format(len(str_x)))
 input()
 print ('{:=^40}'.format(' starting '))
 
+start = time.time()
+
 x_shape, y_shape = utils.XY_to_train([str_x[1]], [str_y[1]], fromV, dictLen=len(vocab))
 
 X = np.zeros(x_shape.shape, dtype=np.float32)
@@ -47,3 +49,5 @@ print ('data saved:', X[1:].shape, Y[1:].shape)
 print ('data left:', len(str_x), len(str_y))
 
 print ('{:=^40}'.format(' data saved '))
+
+print ('total time: {:.4f}'.format(time.time()-start))
