@@ -21,13 +21,13 @@ print ('to start processing {} of data, press any key'.format(len(str_x)))
 input()
 print ('{:=^40}'.format(' starting '))
 
-x_shape, y_shape = utils.XY_to_train([str_x[1]], [str_y[1]], fromV)
+x_shape, y_shape = utils.XY_to_train([str_x[1]], [str_y[1]], fromV, dictLen=len(vocab))
 
 X = np.zeros(x_shape.shape, dtype=np.float32)
 Y = np.zeros(y_shape.shape, dtype=np.float32)
 
 while len(str_x) > 0:
-	X_on_batch, Y_on_batch = utils.XY_to_train(str_x[:BATCH_SIZE], str_y[:BATCH_SIZE], fromV)
+	X_on_batch, Y_on_batch = utils.XY_to_train(str_x[:BATCH_SIZE], str_y[:BATCH_SIZE], fromV, dictLen=len(vocab))
 
 	#print (X.shape, X_on_batch.shape)
 
