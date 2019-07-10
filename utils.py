@@ -124,7 +124,7 @@ def get_dataset():
 	re_pat2 = re.compile('^[.][ ]wz')
 	#re_pat3 = re.compile('^\d+ [/] [a-m] [a-zA-Z!@#$%^&*()_\\/\'";:<>,.?`~]+')
 	re_pat4 = re.compile('^[.] [3-9] |^[1-2][0-9] [/] [a-m]')
-	re_pat5 = re.compile('^[!] \w+|^UnScramble|^U\d+ [(] U\d+|^[:] U\d+')
+	re_pat5 = re.compile('^[!] \w+|^UnScramble|^U\d+ [(] U\d+|^[:] U\d+|^[<]empty[>]')
 	re_pat6 = re.compile('^[.] Question |^[.] Scorpio |^[.] Rooster ')
 	re_pat7 = re.compile('U\d+')
 
@@ -184,11 +184,23 @@ def get_dataset():
 		if re_pat7.search(to_search) != None:
 			for index2, j in enumerate(i):
 				if re_pat7.search(j) != None:
-					posts[index][index2] = random.choice(nameList)
+					posts[index][index2] = 'Human' #random.choice(nameList)
+
+	out = untokenize(posts)
+	re_pat8 = re.compile('(?<=^[hH][Ii])[ ,.a-zA-Z0-9]+|(?<=^[Hh][eE][lL][lL][oO])[ a-zA-Z0-9]+')
+
+	for index, i in enumerate(out):
+		out[index] = re_pat8.sub('', i)
+
+	nick_pat = re.compile('^NICK[:] Human')
+
+	for index, i in enumerate(out):
+		if nick_pat.search(i) != None:
+			del out[index]
 
 	print ('done')
 
-	return posts
+	return out
 
 def untokenize(nps_chatTokenized):
 	'''
