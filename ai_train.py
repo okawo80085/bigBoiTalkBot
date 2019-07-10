@@ -13,7 +13,7 @@ print (tf.__version__)
 
 EPOCHS = 300
 BATCH = 52000
-STEP = 0.000078
+STEP = 0.000081
 
 SAVE_NAME = 'bigBoiAI_v3.1.h5'
 
@@ -36,7 +36,7 @@ def make_model(input_dim=(400,), out_dim=95):
 	model.add(l.GRU(32, return_sequences=True, activation='relu'))
 	model.add(l.GRU(64, return_sequences=True, activation='relu'))
 	#model.add(l.GRU(32, return_sequences=True, activation='relu'))
-	
+
 	# output
 	model.add(l.Flatten())
 	model.add(l.Dense(out_dim, activation='softmax'))
@@ -61,7 +61,7 @@ except Exception as e:
 	print (e)
 	pass
 
-X, Y = utils.load_train_data('train_data_big.npz')
+X, Y = utils.load_train_data('train_data_big2.npz')
 
 #print (X, Y)
 print (X.shape, Y.shape)
