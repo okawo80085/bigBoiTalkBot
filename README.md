@@ -48,7 +48,7 @@ this will run the bot using the v3.1 model
 
 ### training the AI/neural network model
 
-to train the model you need to pre-process the training data AT LEAST ONCE first or download [train_data_big_v3_only.npz (our training data)](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
+to train the model you need to pre-process the training data AT LEAST ONCE first or download [train_data_big2_v3andup.npz (our training data)](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
 optional if you downloaded [train_data_big_v3_only.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV), to pre-process the data, run
 ```python
@@ -72,9 +72,9 @@ python ai_train.py
 ```bigBoiAI.h5``` is the model's save file
 
 ~~training data will be uploaded later~~ training data:
-[train_data_big_v3_only.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
+[train_data_big2_v3andup.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
-note: `train_data_big_v3_only.npz` works with v3 or higher models and new vocab only, if you want to use our old dataset you need to change models to v2 or v1 and use `old_vocab` from `utils.py`
+note: `train_data_big2_v3andup.npz` works with v3 or higher models and new vocab only, if you want to use our old dataset you need to change models to v2 or v1 and use `old_vocab` from `utils.py`
 
 **vocab examples**
 ```python
@@ -100,6 +100,21 @@ python ai_chat.py
 
 and try to chat with it, note that it's ~~severally~~ a bit under-trained
 
+
+## automatic model evaluation
+
+make file `test.txt` and populate it with messages for evaluation, 1 per line, leave the last line empty
+
+then run
+```python
+python3 ai_chat_test.py
+```
+or
+```python
+python ai_chat_test.py
+```
+
+it will then output a score for `test.txt` and for model's responses
 
 ## how it works
 
