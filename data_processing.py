@@ -50,4 +50,4 @@ print ('data left:', len(str_x), len(str_y))
 
 print ('{:=^40}'.format(' data saved '))
 
-print ('total time: {:.4f}'.format(time.time()-start))
+print ('total time: {:.4f}s'.format(time.time()-start))
