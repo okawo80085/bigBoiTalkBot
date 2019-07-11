@@ -11,11 +11,11 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 300
-BATCH = 52000
-STEP = 0.000081
+EPOCHS = 800
+BATCH = 53500
+STEP = 0.000076
 
-SAVE_NAME = 'bigBoiAI_v3.1.h5'
+SAVE_NAME = 'bigBoiAI_v3.2.h5'
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()
