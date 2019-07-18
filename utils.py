@@ -38,23 +38,23 @@ def clean_text(text, vocab):
 		return ''
 
 	text = text.replace('&', ' and ')
-	text = re.sub(r'\.( +\.)+', '..', text)
+	#text = re.sub(r'\.( +\.)+', '..', text)
 	#text = re.sub(r'\.\.+', ' ^ ', text)
 	text = re.sub(r',+', ',', text)
-	text = re.sub(r'\-+', '-', text)
-	text = re.sub(r'\?+', ' ? ', text)
-	text = re.sub(r'\!+', ' ! ', text)
+	#text = re.sub(r'\-+', '-', text)
+	#text = re.sub(r'\?+', ' ? ', text)
+	#text = re.sub(r'\!+', ' ! ', text)
 	text = re.sub(r'\'+', "'", text)
-	text = re.sub(r';+', ':', text)
-	text = re.sub(r'/+', ' / ', text)
-	text = re.sub(r'<+', ' < ', text)
-	text = re.sub(r'>+', ' > ', text)
-	text = text.replace('%', '% ')
-	text = text.replace(' - ', ' : ')
-	text = text.replace(' -', " - ")
-	text = text.replace('- ', " - ")
-	text = text.replace(" '", " ")
-	text = text.replace("' ", " ")
+	#text = re.sub(r';+', ':', text)
+	#text = re.sub(r'/+', ' / ', text)
+	#text = re.sub(r'<+', ' < ', text)
+	#text = re.sub(r'>+', ' > ', text)
+	#text = text.replace('%', '% ')
+	#text = text.replace(' - ', ' : ')
+	#text = text.replace(' -', " - ")
+	#text = text.replace('- ', " - ")
+	#text = text.replace(" '", " ")
+	#text = text.replace("' ", " ")
 
 	#for c in ".,:":
 	#	text = text.replace(c + ' ', ' ' + c + ' ')
@@ -76,7 +76,7 @@ def proc_text(msgObj, vocab):
 		x = '<@{}>'.format(i.id)
 		x2 = '<@!{}>'.format(i.id)
 		if i.nick != None:
-			text = re.sub(x2, '{}'.format(str(i.nick)[:5]), text)
+			text = re.sub(x2, '{}'.format(str(i.nick)), text)
 
 		else:
 			text = re.sub(x, '{}'.format(str(i.name)), text)

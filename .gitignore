@@ -6,13 +6,12 @@
 *.log
 *.npy
 *.npz
-*.LENOVOH
 *.profile-empty
 *.trace
 *.db
 *.out
-*.tfevents
-*.okwokk-System-Product-Name
+log
 t.py
+__pycache__
 *.zip
 *.trn

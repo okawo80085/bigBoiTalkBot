@@ -6,6 +6,8 @@ import utils
 
 raw_data = utils.get_dataset()
 
+SAVE_NAME = 'train_data.npz'
+
 DATA_TO_PROCESS = int(input('data to process, {} max? '.format(len(raw_data))))
 BATCH_SIZE = int(input('batch size? '))
 
@@ -43,7 +45,7 @@ while len(str_x) > 0:
 	str_y = str_y[BATCH_SIZE:]
 
 
-utils.save_train_data('train_data.npz', X[1:], Y[1:])
+utils.save_train_data(SAVE_NAME, X[1:], Y[1:])
 
 print ('data saved:', X[1:].shape, Y[1:].shape)
 print ('data left:', len(str_x), len(str_y))

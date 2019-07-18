@@ -11,11 +11,12 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 800
+EPOCHS = 300
 BATCH = 53500
-STEP = 0.000076
+STEP = 0.000081
 
 SAVE_NAME = 'bigBoiAI_v3.2.h5'
+DATASET_PATH = 'train_data.npz'
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()
@@ -61,7 +62,7 @@ except Exception as e:
 	print (e)
 	pass
 
-X, Y = utils.load_train_data('train_data_big2.npz')
+X, Y = utils.load_train_data(DATASET_PATH)
 
 #print (X, Y)
 print (X.shape, Y.shape)
