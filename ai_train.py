@@ -11,9 +11,9 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 300
+EPOCHS = 600
 BATCH = 53500
-STEP = 0.000081
+STEP = 0.000083
 
 SAVE_NAME = 'bigBoiAI_v3.2.h5'
 DATASET_PATH = 'train_data.npz'
