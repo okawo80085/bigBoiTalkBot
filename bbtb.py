@@ -57,12 +57,14 @@ bop = Bot(command_prefix=BOT_PREFIX)
 
 @bop.event
 async def on_message(msg):
-	log.info('{} > {}'.format(msg.author, utils.proc_text(msg, vocab)))
 
 	if msg.author == bop.user:
+		log.info('{} > {}'.format('bot', utils.proc_text(msg, vocab)))
 		return
-	
+
 	proced = utils.proc_text(msg, vocab)
+
+	log.info('{} > {}'.format('human', proced))
 
 	print ('{} > {} : {}'.format(msg.channel, msg.author, proced))
 
