@@ -11,12 +11,14 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 600
-BATCH = 53500
-STEP = 0.000083
+EPOCHS = 300
+BATCH = 55500
+STEP = 0.0000837
 
 SAVE_NAME = 'bigBoiAI_v3.2.h5'
 DATASET_PATH = 'train_data.npz'
+
+startTime = time.time()
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()
@@ -67,12 +69,14 @@ X, Y = utils.load_train_data(DATASET_PATH)
 #print (X, Y)
 print (X.shape, Y.shape)
 
-print ('='*20, 'starting training', '='*20)
+print ('{:=^40}'.format('starting training'))
 
 generator_model.fit(X, Y, epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
 
 generator_model.save(SAVE_NAME)
 
-print ('='*20, 'done', '='*20)
+print ('{:=^40}'.format('done'))
+
+print ('total time: {:.4f}s'.format(time.time()-startTime))
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')
