@@ -13,6 +13,18 @@ import re
 import utils
 import string
 
+import logging
+
+log = logging.getLogger('chat')
+
+fh = logging.FileHandler(filename='chat.log', mode='a')
+
+formatter = logging.Formatter('%(asctime)s - %(message)s')
+
+fh.setFormatter(formatter)
+
+log.addHandler(fh)
+log.setLevel(logging.INFO)
 
 print (tf.__version__)
 
@@ -45,8 +57,11 @@ bop = Bot(command_prefix=BOT_PREFIX)
 
 @bop.event
 async def on_message(msg):
+	log.info('{} > {}'.format(msg.author, utils.proc_text(msg, vocab)))
+
 	if msg.author == bop.user:
 		return
+	
 	proced = utils.proc_text(msg, vocab)
 
 	print ('{} > {} : {}'.format(msg.channel, msg.author, proced))
