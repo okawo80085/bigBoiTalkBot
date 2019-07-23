@@ -333,6 +333,7 @@ def generate_a_reply(model, textInput, vocab, maxLen=200):
 			out1.append(find_dominant_neuron(i)[0])
 			out2.append(find_dominant_neuron(i)[1])
 
+		temp2 = np.roll(temp2, -1, axis=0)
 		#print ('.')
 
 	return arr_to_vocab(out1, vocabTo), out1, out2
