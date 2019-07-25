@@ -353,6 +353,10 @@ def score(text, question):
 	if pat.search(text) != None and pat.search(question) == None:
 		score -= 45
 
+	if len(text) == 1:
+		if text[0] in '@#$%^&*_+/\\-=':
+			score -= 150
+
 	if len(text) == 0:
 		score = 0
 
@@ -385,7 +389,7 @@ def generate_a_reply(model, textInput, vocab, noise=1, maxLen=200):
 			out1.append(find_dominant_neuron(i)[0])
 			out2.append(find_dominant_neuron(i)[1])
 
-		temp2 = np.roll(temp2, -1, axis=0)
+		#temp2 = np.roll(temp2, -1, axis=0)
 		#print ('.')
 
 	return re.sub('[ ]+', ' ', ''.join(arr_to_vocab(out1, vocabTo)).strip(' ')), out1, out2
@@ -396,7 +400,7 @@ def respond(model, userInput, vocab):
 	resps = [firstResp]
 	scores = [score(firstResp, userInput)]
 
-	for i in range(17):
+	for i in range(9):
 		answer, _, _ = generate_a_reply(model, userInput, vocab, noise=random.random())
 
 		resps.append(answer)

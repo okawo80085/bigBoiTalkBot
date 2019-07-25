@@ -12,11 +12,12 @@ import utils
 print (tf.__version__)
 
 EPOCHS = 300
-BATCH = 55500
-STEP = 0.0000837
+BATCH = 5000
+LR = 0.001
+D_AMOUNT = 200000
 
-SAVE_NAME = 'bigBoiAI_v3.2.h5'
-DATASET_PATH = 'train_data.npz'
+SAVE_NAME = 'ytc_adopted.h5'
+DATASET_PATH = 'train_data_for_adopted.npz'
 
 startTime = time.time()
 
@@ -47,15 +48,50 @@ def make_model(input_dim=(400,), out_dim=95):
 
 	return model
 
-generator_model = make_model(out_dim=len(utils.vocab))
+def make_model2(input_dim=(200,), out_dim=95):
+	'''
+	model adopted from https://github.com/HackerPoet/YouTubeCommenter
+	experimental...
+	'''
 
-generator_model.summary()
+	pastInput = l.Input(shape=input_dim)
+	userInput = l.Input(shape=input_dim)
 
-generator_model.compile(optimizer=tf.train.AdamOptimizer(STEP),
+	#past_dense = l.Embedding(out_dim, 200, input_length=8)(pastInput)
+
+	#user_dense = l.Dense(200)(userInput)
+	#user_dense = l.LeakyReLU(0.2)(user_dense)
+	#user_dense = l.RepeatVector(200)(user_dense)
+
+	user = l.Dense(150)(userInput)
+	user = l.BatchNormalization()(user)
+	user = l.LeakyReLU()(user)
+	user = l.RepeatVector(8)(user)
+
+	past = l.Dense(90)(pastInput)
+	past = l.BatchNormalization()(past)
+	past = l.LeakyReLU()(past)
+	past = l.RepeatVector(8)(past)
+
+	x = l.concatenate([past, user])
+	x = l.Dropout(0.07)(x)
+
+	x = l.GRU(128, return_sequences=False)(x)
+
+	out = l.Dense(out_dim, activation='softmax')(x)
+
+	return ker.Model(inputs=[pastInput, userInput], outputs=[out])
+
+metric = 'accuracy'
+
+generator_model = make_model2(out_dim=len(utils.vocab))
+
+generator_model.compile(optimizer=tf.train.AdamOptimizer(LR),
 	loss='categorical_crossentropy',
-	metrics=['accuracy'])
+	metrics=[metric])
 
-tb_callback = tb(log_dir=os.path.normpath('./log/{}_step_{}_batch_{}'.format(SAVE_NAME, STEP, BATCH)), histogram_freq=0)
+tb_callback = tb(log_dir=os.path.normpath('./log/{}_step_{}_batch_{}'.format(SAVE_NAME, LR, BATCH)), histogram_freq=0)
+generator_model.summary()
 
 try:
 	generator_model.load_weights(SAVE_NAME)
@@ -64,14 +100,20 @@ except Exception as e:
 	print (e)
 	pass
 
-X, Y = utils.load_train_data(DATASET_PATH)
+Xp, Xu, Y = utils.load_train_data2(DATASET_PATH)
 
-#print (X, Y)
-print (X.shape, Y.shape)
+print (Xp.shape, Xu.shape, Y.shape)
+
+print (generator_model.predict([np.zeros((1, 200)), np.zeros((1, 200))]).shape)
+
 
 print ('{:=^40}'.format('starting training'))
 
-generator_model.fit(X, Y, epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
+#batch_loss, batch_acc = generator_model.train_on_batch([Xp[:BATCH], Xu[:BATCH]], [Y[:BATCH]])
+
+#print (batch_loss, batch_acc)
+
+generator_model.fit([Xp[:D_AMOUNT], Xu[:D_AMOUNT]], [Y[:D_AMOUNT]], epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
 
 generator_model.save(SAVE_NAME)
 
