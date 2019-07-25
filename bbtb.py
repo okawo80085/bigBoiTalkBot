@@ -12,6 +12,7 @@ from tensorflow.keras.models import load_model
 import re
 import utils
 import string
+import random
 
 import logging
 
@@ -79,12 +80,9 @@ async def on_message(msg):
 
 		#loop = asyncio.get_event_loop()
 
-		resp, ix, ix_prob = utils.generate_a_reply(botModel, proced, vocab)
+		resps = utils.respond(botModel, proced, vocab)
 
-		print (ix)
-
-		responce = re.sub('[ ]+', ' ', ''.join(resp).strip(' '))
-		print ([responce])
+		responce = random.choice(resps)[0]
 
 		if len(responce) > 0:
 			await bop.send_message(msg.channel, responce)
