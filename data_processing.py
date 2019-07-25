@@ -46,10 +46,10 @@ while len(str_x) > 0:
 
 
 utils.save_train_data(SAVE_NAME, X[1:], Y[1:])
+print ('{:=^40}'.format(' data saved '))
 
 print ('data saved:', X[1:].shape, Y[1:].shape)
 print ('data left:', len(str_x), len(str_y))
 
-print ('{:=^40}'.format(' data saved '))
 
 print ('total time: {:.4f}s'.format(time.time()-start))
