@@ -3,6 +3,8 @@ from tensorflow.keras.models import load_model
 
 import re
 import utils
+import random
+import textstat as t
 
 print (tf.__version__)
 
@@ -22,12 +24,12 @@ vocab = utils.vocab
 print (vocab)
 
 while 1:
-	usrInput = input('# ')
+	usrInput = utils.clean_text(input('# '), vocab)
 
-	resp, ix, ix_prob = utils.generate_a_reply(botModel, usrInput, vocab)
+	resps = utils.respond(botModel, usrInput, vocab)
 
-	print (ix)
-	#print (ix_prob)
-	print (re.sub('[ ]+', ' ', ''.join(resp).strip(' ')))
+	for i in resps:
+		print (i)
+
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')
