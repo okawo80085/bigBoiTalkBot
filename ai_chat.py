@@ -8,7 +8,7 @@ import textstat as t
 
 print (tf.__version__)
 
-modelSaveFileName = 'bigBoiAI_v3.2.h5'
+modelSaveFileName = 'ytc_adopted.h5'
 
 try:
 	botModel = load_model(modelSaveFileName)
@@ -26,10 +26,9 @@ print (vocab)
 while 1:
 	usrInput = utils.clean_text(input('# '), vocab)
 
-	resps = utils.respond(botModel, usrInput, vocab)
+	reply, ix, ix_prob = utils.generate_a_reply2(botModel, usrInput, vocab)
 
-	for i in resps:
-		print (i)
-
+	print (ix)
+	print (reply)
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')

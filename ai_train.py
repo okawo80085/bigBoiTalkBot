@@ -11,10 +11,9 @@ import utils
 
 print (tf.__version__)
 
-EPOCHS = 300
-BATCH = 5000
+EPOCHS = 100
+BATCH = 40000
 LR = 0.001
-D_AMOUNT = 200000
 
 SAVE_NAME = 'ytc_adopted.h5'
 DATASET_PATH = 'train_data_for_adopted.npz'
@@ -113,7 +112,7 @@ print ('{:=^40}'.format('starting training'))
 
 #print (batch_loss, batch_acc)
 
-generator_model.fit([Xp[:D_AMOUNT], Xu[:D_AMOUNT]], [Y[:D_AMOUNT]], epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
+generator_model.fit([Xp, Xu], [Y], epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
 
 generator_model.save(SAVE_NAME)
 
