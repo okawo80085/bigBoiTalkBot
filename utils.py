@@ -394,6 +394,38 @@ def generate_a_reply(model, textInput, vocab, noise=1, maxLen=200):
 
 	return re.sub('[ ]+', ' ', ''.join(arr_to_vocab(out1, vocabTo)).strip(' ')), out1, out2
 
+def generate_a_reply2(model, textInput, vocab, noise=1, maxLen=200):
+	'''
+	generates a reply to user's input
+	'''
+	_, _, vocabTo, vocabFrom = dataset_to_XY([], vocab)
+
+	out1 = []
+	out2 = []
+
+	temp2 = np.expand_dims(pad_right(np.array(arr_to_vocab(textInput, vocabFrom), dtype=np.float32), maxLen), axis=0)*noise
+
+	while 1:
+
+		if len(out1) > 0:
+			if out1[-1] == 0 or len(out1) >= maxLen:
+				if out1[-1] == 0:
+					out1 = out1[:-1]
+				break
+
+		temp = np.expand_dims(pad_right(np.array(out1, dtype=np.float32), maxLen), axis=0)
+
+		for i in model.predict([temp, temp2]):
+			rep = find_dominant_neuron(i)
+			out1.append(rep[0])
+			out2.append(rep[1])
+
+		#temp2 = np.roll(temp2, -1, axis=0)
+		#print ('.')
+
+	return re.sub('[ ]+', ' ', ''.join(arr_to_vocab(out1, vocabTo)).strip(' ')), out1, out2
+
+
 def respond(model, userInput, vocab):
 	firstResp, _, _ = generate_a_reply(model, userInput, vocab)
 
