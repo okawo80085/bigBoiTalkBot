@@ -42,7 +42,7 @@ with open('test.txt', 'rt') as f:
 		test_score.append(t.flesch_reading_ease(i[:-1]))
 
 		print (f'user: {in_text}')
-		print (f'bot: {text}', '\n')
+		print (f'bot: {text}', '\n{}'.format(score), '\n')
 
 
 print (test_score)
