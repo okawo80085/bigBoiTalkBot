@@ -263,7 +263,7 @@ def pad_right(arr, maxLen):
 
 def XY_to_train(strX, strY, vocabFrom, maxLen=200, dictLen=95):
 	'''
-	converts "bag of words" data to model accepteble training data
+	converts "bag of letters" data to model acceptable training data
 	'''
 	outX = np.array([np.zeros(400)], dtype=np.float32)
 
