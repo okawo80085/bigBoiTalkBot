@@ -31,7 +31,7 @@ print (tf.__version__)
 
 our_github_repo_link = 'https://github.com/okawo80085/bigBoiTalkBot'
 
-modelSaveFileName = 'bigBoiAI_v3.2.h5'
+modelSaveFileName = 'ytc_adopted.h5'
 
 try:
 	botModel = load_model(modelSaveFileName)
@@ -80,12 +80,12 @@ async def on_message(msg):
 
 		#loop = asyncio.get_event_loop()
 
-		resps = utils.respond(botModel, proced, vocab)
+		resp, ix, _ = utils.generate_a_reply2(botModel, proced, vocab)
 
-		responce = random.choice(resps)[0]
-
-		if len(responce) > 0:
-			await bop.send_message(msg.channel, responce)
+		#responce = random.choice(resps)[0]
+		#print (ix)
+		if len(resp) > 0:
+			await bop.send_message(msg.channel, resp)
 
 	else:
 		await bop.send_message(msg.channel, 'i cant process that ^')
