@@ -6,8 +6,6 @@
 *.log
 *.npy
 *.npz
-*.profile-empty
-*.trace
 *.db
 *.out
 log
