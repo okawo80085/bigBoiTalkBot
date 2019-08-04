@@ -1,5 +1,5 @@
 made for discord hack week by okawo#0901 and Dr. Big Cashew PhD Rodent TV#4485.
-A chating bot using Neural Networks and ```tensorflow```!
+A chatting bot using Neural Networks and ```tensorflow```!
 
 
 [invite the bot](https://discordapp.com/api/oauth2/authorize?client_id=592786784065159188&permissions=37215296&scope=bot)
@@ -8,19 +8,20 @@ some people named him `aiol`, but they also say it named it self...
 
 ### requirements
 
-Python libs:
-* ```nltk```
-* ```tensorflow==1.14.0```
-* ```sacremoses```
-* ```numpy```
-* ```discord.py```
+Installation:
+```python
+pip3 install -U -r requirements.txt
+```
+or
+```python
+pip install -U -r requirements.txt
+```
 
 Nltk packages:
 * ```nps_chat```
 * ```names```
 * ```moses_sample```
 
-and Python3 😃
 
 #### note: if nltk packages and/or nltk is not installed, training and data processing most likely wont work
 
@@ -45,9 +46,9 @@ this will run the bot using the v3.1 model
 
 ### training the AI/neural network model
 
-to train the model you need to pre-process the training data AT LEAST ONCE first or download [train_data_big2_v3andup.npz (our training data)](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
+to train the model you need to pre-process the training data AT LEAST ONCE first or download [our training data](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
-optional if you downloaded [train_data_big2_v3andup.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV), to pre-process the data, run
+optional if you downloaded [our training data](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV), to pre-process the data, run
 ```python
 python3 data_processing.py
 ```
@@ -66,12 +67,10 @@ python ai_train.py
 ```
 
 
-```bigBoiAI.h5``` is the model's save file
+```*.h5``` is the model's save file
 
 training data:
-[train_data_big2_v3andup.npz](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
-
-note: `train_data_big2_v3andup.npz` works with v3 or higher models and new vocab only, if you want to use our old dataset you need to change models to v2 or v1 and use `old_vocab` from `utils.py`
+[google drive folder with training data used](https://drive.google.com/open?id=1ZEp2oyQ0tz0T9GhOpK7_C0zOnOlC1abV)
 
 **vocab examples**
 ```python
@@ -83,7 +82,7 @@ note: `train_data_big2_v3andup.npz` works with v3 or higher models and new vocab
 ```
 
 ## using the AI/neural network in predict mode/talking with it!!!
-this functionality is complitley incomporated in ```bbtb.py``` i. e. **bigBoiTalkBot**, but if you want to just test out the AI after training
+this functionality is completely incorporated in ```bbtb.py``` i. e. **bigBoiTalkBot**, but if you want to just test out the AI after training
 
 
 run
@@ -117,7 +116,7 @@ it will then output a score for `test.txt` and for model's responses
 
 we have an RNN neural network model, trained on normalized nps_chat corpus data, to predict the next character basted on the user input and characters it generated before.
 
-we achived some progress with training but it seems that model design needs to be improved and/or our training data switched, to reddit data for example, and way more training.
+we achieved some progress with training but it seems that model design needs to be improved and/or our training data switched, to reddit data for example, and way more training.
 
 out right switching from an RNN to a Seq2Seq model might also help.
 

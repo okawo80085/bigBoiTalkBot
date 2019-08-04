@@ -16,3 +16,4 @@ __pycache__
 *.json
 *.to
 *.from
+!requirements.txt
