@@ -15,7 +15,7 @@ EPOCHS = 100
 BATCH = 40000
 LR = 0.001
 
-SAVE_NAME = 'ytc_adopted.h5'
+SAVE_PATH = 'modelz/ytc_adopted.h5'
 DATASET_PATH = 'train_data_for_adopted.npz'
 
 startTime = time.time()
@@ -89,11 +89,11 @@ generator_model.compile(optimizer=tf.train.AdamOptimizer(LR),
 	loss='categorical_crossentropy',
 	metrics=[metric])
 
-tb_callback = tb(log_dir=os.path.normpath('./log/{}_step_{}_batch_{}'.format(SAVE_NAME, LR, BATCH)), histogram_freq=0)
+tb_callback = tb(log_dir=os.path.normpath('./log/{}_step_{}_batch_{}'.format(SAVE_PATH, LR, BATCH)), histogram_freq=0)
 generator_model.summary()
 
 try:
-	generator_model.load_weights(SAVE_NAME)
+	generator_model.load_weights(SAVE_PATH)
 
 except Exception as e:
 	print (e)
@@ -114,7 +114,7 @@ print ('{:=^40}'.format('starting training'))
 
 generator_model.fit([Xp, Xu], [Y], epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
 
-generator_model.save(SAVE_NAME)
+generator_model.save(SAVE_PATH)
 
 print ('{:=^40}'.format('done'))
 

@@ -8,14 +8,14 @@ import textstat as t
 
 print (tf.__version__)
 
-modelSaveFileName = 'ytc_adopted.h5'
+modelSaveFilePath = 'modelz/ytc_adopted.h5'
 
 try:
-	botModel = load_model(modelSaveFileName)
+	botModel = load_model(modelSaveFilePath)
 
 except Exception as e:
 	print (e)
-	raise Exception('failed to load model from the file \'{}\''.format(modelSaveFileName))
+	raise Exception('failed to load model from the file \'{}\''.format(modelSaveFilePath))
 
 botModel.summary()
 

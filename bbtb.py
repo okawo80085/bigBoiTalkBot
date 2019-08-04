@@ -31,14 +31,14 @@ print (tf.__version__)
 
 our_github_repo_link = 'https://github.com/okawo80085/bigBoiTalkBot'
 
-modelSaveFileName = 'ytc_adopted.h5'
+modelSaveFilePath = 'modelz/ytc_adopted.h5'
 
 try:
-	botModel = load_model(modelSaveFileName)
+	botModel = load_model(modelSaveFilePath)
 
 except Exception as e:
 	print (e)
-	raise Exception('failed to load model from the file \'{}\''.format(modelSaveFileName))
+	raise Exception('failed to load model from the file \'{}\''.format(modelSaveFilePath))
 	exit()
 
 
