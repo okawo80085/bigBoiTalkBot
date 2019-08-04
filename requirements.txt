@@ -1,0 +1,5 @@
+nltk
+tensorflow==1.14.0
+sacremoses
+numpy
+discord.py==0.16.12
