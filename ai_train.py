@@ -12,17 +12,17 @@ from bpe import BPE
 
 print (tf.__version__)
 
-EPOCHS = 100
-BATCH = 40000
+EPOCHS = 10
+BATCH = 10000
 LR = 0.001
 
-SAVE_PATH = 'modelz/ytc_adopted.h5'
-DATASET_PATH = 'train_data_for_adopted.npz'
+SAVE_PATH = 'modelz/ytc_adopted_bpe_edition.h5'
+DATASET_PATH = 'train_data_bpe_edition.npz'
 
 bpe = BPE()
 
 startTime = time.time()
-bpe.load('bpeData/words.bpe')
+bpe.load('data/words.bpe')
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()
@@ -71,7 +71,7 @@ def make_model2(input_dim=(200,), out_dim=95):
 	past = l.RepeatVector(8)(past)
 
 	x = l.concatenate([past, user])
-	x = l.Dropout(0.07)(x)
+	x = l.Dropout(0.11)(x)
 
 	x = l.GRU(128, return_sequences=False)(x)
 
@@ -96,7 +96,7 @@ try:
 except Exception as e:
 	print ('failed to load model\'s weights:', e)
 	pass
-'''
+
 Xp, Xu, Y = utils.load_train_data2(DATASET_PATH)
 
 print (Xp.shape, Xu.shape, Y.shape)
@@ -115,7 +115,7 @@ generator_model.fit([Xp, Xu], [Y], epochs=EPOCHS, batch_size=BATCH, shuffle=True
 generator_model.save(SAVE_PATH)
 
 print ('{:=^40}'.format('done'))
-'''
+
 print ('total time: {:.4f}s'.format(time.time()-startTime))
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')
