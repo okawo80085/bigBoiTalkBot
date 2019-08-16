@@ -16,4 +16,6 @@ __pycache__
 *.json
 *.to
 *.from
+*.bpe
+data
 !requirements.txt

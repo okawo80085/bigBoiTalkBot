@@ -8,6 +8,7 @@ import re
 import time
 import os
 import utils
+from bpe import BPE
 
 print (tf.__version__)
 
@@ -18,7 +19,10 @@ LR = 0.001
 SAVE_PATH = 'modelz/ytc_adopted.h5'
 DATASET_PATH = 'train_data_for_adopted.npz'
 
+bpe = BPE()
+
 startTime = time.time()
+bpe.load('bpeData/words.bpe')
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()
@@ -56,12 +60,6 @@ def make_model2(input_dim=(200,), out_dim=95):
 	pastInput = l.Input(shape=input_dim)
 	userInput = l.Input(shape=input_dim)
 
-	#past_dense = l.Embedding(out_dim, 200, input_length=8)(pastInput)
-
-	#user_dense = l.Dense(200)(userInput)
-	#user_dense = l.LeakyReLU(0.2)(user_dense)
-	#user_dense = l.RepeatVector(200)(user_dense)
-
 	user = l.Dense(150)(userInput)
 	user = l.BatchNormalization()(user)
 	user = l.LeakyReLU()(user)
@@ -83,7 +81,7 @@ def make_model2(input_dim=(200,), out_dim=95):
 
 metric = 'accuracy'
 
-generator_model = make_model2(out_dim=len(utils.vocab))
+generator_model = make_model2(out_dim=len(bpe.str_to_token))
 
 generator_model.compile(optimizer=tf.train.AdamOptimizer(LR),
 	loss='categorical_crossentropy',
@@ -96,9 +94,9 @@ try:
 	generator_model.load_weights(SAVE_PATH)
 
 except Exception as e:
-	print (e)
+	print ('failed to load model\'s weights:', e)
 	pass
-
+'''
 Xp, Xu, Y = utils.load_train_data2(DATASET_PATH)
 
 print (Xp.shape, Xu.shape, Y.shape)
@@ -117,7 +115,7 @@ generator_model.fit([Xp, Xu], [Y], epochs=EPOCHS, batch_size=BATCH, shuffle=True
 generator_model.save(SAVE_PATH)
 
 print ('{:=^40}'.format('done'))
-
+'''
 print ('total time: {:.4f}s'.format(time.time()-startTime))
 
 print ('(っ・ω・）っ≡≡≡≡≡≡☆')

@@ -86,7 +86,7 @@ def proc_text(msgObj, vocab):
 
 	return clean_text(text, vocab)
 
-def get_dataset():
+def get_dataset(low_it=False):
 	'''
 	removes most not natural messages from the nps_chat dataset and returns it
 	also replaces user ids with random names
@@ -199,6 +199,10 @@ def get_dataset():
 		if nick_pat.search(i) != None:
 			del out[index]
 
+	if low_it:
+		for index, i in enumerate(out):
+			out[index] = i.lower()
+
 	print ('done')
 
 	return out
@@ -250,7 +254,7 @@ def dataset_to_XY(textList, vocab, maxLen=200):
 
 	return X, Y, to_vocab, from_vocab
 
-def pad_right(arr, maxLen):
+def pad_right(arr, maxLen, val=0):
 	'''
 	if arr bigger then maxLen: return arr[:maxLen]
 	else: returns an arr with epmty space filled with zeros
@@ -259,7 +263,7 @@ def pad_right(arr, maxLen):
 		return arr[:maxLen]
 
 	else:
-		return np.concatenate((arr, np.zeros(maxLen-arr.shape[0])))
+		return np.pad(arr, (0, maxLen-arr.shape[0]), constant_values=val)
 
 def XY_to_train(strX, strY, vocabFrom, maxLen=200, dictLen=95):
 	'''
