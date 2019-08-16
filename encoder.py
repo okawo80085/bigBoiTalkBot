@@ -13,4 +13,4 @@ bpe.add_seq(text)
 bpe.set_merges(bpe_vocab)
 
 bpe.embed(800)
-bpe.save('bpeData/words.bpe')
+bpe.save('data/words.bpe')

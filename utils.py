@@ -453,3 +453,50 @@ def respond(model, userInput, vocab):
 		print (i)
 
 	return out
+
+def encodeData(strList, bpe, endToken, maxLen=200):
+	print ('starting...')
+	temp = []
+	for i in strList:
+		if len(i) <= maxLen:
+			temp.append(bpe.encode(i))
+
+	print ('part 1: done')
+
+	outXi = []
+	outXp = []
+	outY = []
+	for index, i in enumerate(temp[:-1]):
+		tempY = temp[index+1]
+		for j in range(len(tempY)):
+			outXi.append(i)
+			outXp.append(tempY[:j])
+			outY.append(tempY[j])
+		outXi.append(i)
+		outXp.append(tempY)
+		outY.append(endToken)
+
+	print ('part 2: done, encoded data={}'.format(len(outY)))
+
+	return outXi, outXp, outY
+
+def encoded2xy(x1, x2, y, endToken, numTokens, maxLen=200):
+	outXpast = np.array([np.zeros(200)], dtype=np.float32)
+	outXuser = np.array([np.zeros(200)], dtype=np.float32)
+
+	dataLen = len(y)
+
+	print ('{:=^40}'.format(' converting data '))
+
+	for index, i in enumerate(zip(x1, x2)):
+		outXpast = np.concatenate((outXpast, [pad_right(np.array(i[1], dtype=np.float32), maxLen, val=endToken)]), axis=0)
+		outXuser = np.concatenate((outXuser, [pad_right(np.array(i[0], dtype=np.float32), maxLen, val=endToken)]), axis=0)
+
+		if index % 100 == 0:
+			print ('{}/{} done'.format(index, dataLen))
+
+		#print (temp.shape, temp2.shape, tempX.shape)
+
+	print ('{:=^40}'.format(' done '))
+
+	return outXpast[1:], outXuser[1:], to_categorical(y, numTokens)
