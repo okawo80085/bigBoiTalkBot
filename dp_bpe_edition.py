@@ -11,7 +11,7 @@ numTokens = len(bpe.str_to_token)
 
 raw_data = utils.get_dataset(low_it=True)
 
-SAVE_NAME = 'train_data_bpe_edition.npz'
+SAVE_NAME = 'data/train_data_bpe_edition.npz'
 
 DATA_TO_PROCESS = int(input('data to process, {} max? '.format(len(raw_data))))
 BATCH_SIZE = int(input('batch size? '))

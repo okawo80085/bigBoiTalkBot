@@ -12,12 +12,12 @@ from bpe import BPE
 
 print (tf.__version__)
 
-EPOCHS = 10
-BATCH = 10000
+EPOCHS = 100
+BATCH = 40000
 LR = 0.001
 
 SAVE_PATH = 'modelz/ytc_adopted_bpe_edition.h5'
-DATASET_PATH = 'train_data_bpe_edition.npz'
+DATASET_PATH = 'data/train_data_bpe_edition.npz'
 
 bpe = BPE()
 

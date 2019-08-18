@@ -8,6 +8,8 @@ some people named him `aiol`, but they also say it named it self...
 
 ### requirements
 
+python<3.7
+
 Installation:
 ```python
 pip3 install -U -r requirements.txt
