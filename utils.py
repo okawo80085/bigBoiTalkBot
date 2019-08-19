@@ -475,8 +475,9 @@ def encodeData(strList, bpe, endToken, maxLen=200):
 	print ('starting...')
 	temp = []
 	for i in strList:
-		if len(i) <= maxLen:
-			temp.append(bpe.encode(i))
+		x = bpe.encode(i)
+		if len(x) <= maxLen:
+			temp.append(x)
 
 	print ('part 1: done')
 
