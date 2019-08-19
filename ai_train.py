@@ -12,7 +12,7 @@ from bpe import BPE
 
 print (tf.__version__)
 
-EPOCHS = 100
+EPOCHS = 50
 BATCH = 40000
 LR = 0.001
 
