@@ -60,12 +60,12 @@ def make_model2(input_dim=(200,), out_dim=95):
 	pastInput = l.Input(shape=input_dim)
 	userInput = l.Input(shape=input_dim)
 
-	user = l.Dense(150)(userInput)
+	user = l.Dense(100)(userInput)
 	user = l.BatchNormalization()(user)
 	user = l.LeakyReLU()(user)
 	user = l.RepeatVector(8)(user)
 
-	past = l.Dense(90)(pastInput)
+	past = l.Dense(125)(pastInput)
 	past = l.BatchNormalization()(past)
 	past = l.LeakyReLU()(past)
 	past = l.RepeatVector(8)(past)
