@@ -1,6 +1,6 @@
 #!/bin/bash
 
-path="/home/okwokk/Downloads/okawo's/python/bots-discord/bigBoiTalkBot/"
+path="some/path/"
 
 name=$(basename -- "$0")
 
