@@ -1,12 +1,9 @@
 from bpe import BPE
-import utils
 
 bpe_vocab = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-+=/<>\'":;,.[]'
 
-data = utils.get_dataset()
-
-text = '\n'.join(data)
-text = text.lower()
+with open('ref.txt', 'rt') as f:
+	text = f.read()
 
 bpe = BPE()
 bpe.add_seq(text)

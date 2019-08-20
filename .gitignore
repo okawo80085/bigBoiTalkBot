@@ -17,5 +17,6 @@ __pycache__
 *.to
 *.from
 *.bpe
+*.p
 data
 !requirements.txt

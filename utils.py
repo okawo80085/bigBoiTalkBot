@@ -501,6 +501,34 @@ def encodeData(strList, bpe, endToken, maxLen=200):
 
 	return outXi, outXp, outY
 
+def encodeDataReddit(strList, bpe, endToken, maxLen=200):
+	print ('starting...')
+	temp = []
+	for x, y in strList:
+		xl = bpe.encode(x)
+		yl = bpe.encode(y)
+		if len(xl) <= maxLen and len(yl) <= maxLen:
+			temp.append((xl, yl))
+
+	print ('part 1: done')
+
+	outXi = []
+	outXp = []
+	outY = []
+	for x, y in temp:
+		for j in range(len(tempY)):
+			outXi.append(x)
+			outXp.append(y[:j])
+			outY.append(y[j])
+
+		outXi.append(x)
+		outXp.append(y)
+		outY.append(endToken)
+
+	print ('part 2: done, encoded data={}'.format(len(outY)))
+
+	return outXi, outXp, outY
+
 def encoded2xy(x1, x2, y, endToken, numTokens, maxLen=200):
 	outXpast = np.array([np.zeros(200)], dtype=np.float32)
 	outXuser = np.array([np.zeros(200)], dtype=np.float32)
