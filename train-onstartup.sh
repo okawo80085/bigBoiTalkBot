@@ -18,3 +18,4 @@ do
 	echo
 done
 echo done
+shutdown now
