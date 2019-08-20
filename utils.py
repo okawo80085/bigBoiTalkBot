@@ -35,6 +35,8 @@ def clean_text(text, vocab):
 		for bad in chars[gud]:
 			text = text.replace(bad, gud)
 
+	text = text.encode('utf-8').decode()
+
 	if 'http' in text:
 		return ''
 
