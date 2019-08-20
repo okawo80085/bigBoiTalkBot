@@ -13,7 +13,6 @@ import re
 import utils
 import string
 import random
-from bpe import BPE
 
 import logging
 
@@ -46,9 +45,6 @@ except Exception as e:
 botModel.summary()
 
 vocab = utils.vocab
-bpe = BPE()
-bpe.load('data/words.bpe')
-endToken = bpe.str_to_token['\n']
 
 
 BOT_PREFIX = '!'
@@ -80,12 +76,11 @@ async def on_message(msg):
 	elif 0 < len(proced) <= 200:
 		await bop.send_typing(msg.channel)
 		#do the thing
-		proced = bpe.encode(proced)
 		#print (len(proced), ':', proced)
 
 		#loop = asyncio.get_event_loop()
 
-		resp, ix, _ = utils.generate_a_reply3(botModel, proced, bpe, endToken)
+		resp, ix, _ = utils.generate_a_reply2(botModel, proced, vocab)
 
 		#responce = random.choice(resps)[0]
 		#print (ix)
