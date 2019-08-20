@@ -13,6 +13,7 @@ import re
 import utils
 import string
 import random
+from bpe import BPE
 
 import logging
 
@@ -31,7 +32,7 @@ print (tf.__version__)
 
 our_github_repo_link = 'https://github.com/okawo80085/bigBoiTalkBot'
 
-modelSaveFilePath = 'modelz/ytc_adopted.h5'
+modelSaveFilePath = 'modelz/ytc_adopted_bpe_edition.h5'
 
 try:
 	botModel = load_model(modelSaveFilePath)
@@ -45,7 +46,9 @@ except Exception as e:
 botModel.summary()
 
 vocab = utils.vocab
-
+bpe = BPE()
+bpe.load('data/words.bpe')
+endToken = bpe.str_to_token['\n']
 
 BOT_PREFIX = '!'
 TOKEN = 'your token'
@@ -63,7 +66,7 @@ async def on_message(msg):
 		log.info('{} > {}'.format('bot', utils.proc_text(msg, vocab)))
 		return
 
-	proced = utils.proc_text(msg, vocab)
+	proced = utils.proc_text(msg, vocab).lower()
 
 	log.info('{} > {}'.format('human', proced))
 
@@ -80,8 +83,9 @@ async def on_message(msg):
 
 		#loop = asyncio.get_event_loop()
 
-		resp, ix, _ = utils.generate_a_reply2(botModel, proced, vocab)
-
+		resp, ix, _ = utils.generate_a_reply3(botModel, proced, bpe, endToken)
+		resp = resp.strip('\n')
+		print ([resp])
 		#responce = random.choice(resps)[0]
 		#print (ix)
 		if len(resp) > 0:
