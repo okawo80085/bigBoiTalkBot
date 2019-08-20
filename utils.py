@@ -442,6 +442,7 @@ def generate_a_reply3(model, text, bpe, endToken, maxLen=200):
 				break
 
 		temp = np.expand_dims(pad_right(np.array(out1, dtype=np.float32), maxLen, val=endToken), axis=0)
+		model.reset_states()
 		for i in model.predict([temp, temp2]):
 			rep = find_dominant_neuron(i)
 			out1.append(rep[0])
