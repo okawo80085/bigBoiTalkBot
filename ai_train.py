@@ -17,7 +17,7 @@ BATCH = 40000
 LR = 0.001
 
 SAVE_PATH = 'modelz/ytc_adopted_bpe_edition.h5'
-DATASET_PATH = 'data/train_data_bpe_edition.npz'
+DATASET_PATH = 'data/train_data_BPExREDDIT_edition10k.npz'
 
 bpe = BPE()
 
