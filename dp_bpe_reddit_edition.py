@@ -6,7 +6,7 @@ import pickle as p
 from bpe import BPE
 
 bpe = BPE()
-bpe.load('data/words.bpe')
+bpe.load('data/words2.bpe')
 endToken = bpe.str_to_token['\n']
 numTokens = len(bpe.str_to_token)
 

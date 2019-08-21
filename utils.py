@@ -516,7 +516,7 @@ def encodeDataReddit(strList, bpe, endToken, maxLen=200):
 	outXp = []
 	outY = []
 	for x, y in temp:
-		for j in range(len(tempY)):
+		for j in range(len(y)):
 			outXi.append(x)
 			outXp.append(y[:j])
 			outY.append(y[j])
