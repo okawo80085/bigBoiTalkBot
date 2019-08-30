@@ -22,13 +22,13 @@ botModel.summary()
 
 vocab = utils.vocab
 bpe = BPE()
-bpe.load('data/words.bpe')
+bpe.load('data/words2.bpe')
 endToken = bpe.str_to_token['\n']
 
 print (vocab)
 
 while 1:
-	usrInput = input('# ').lower()
+	usrInput = utils.clean_text(input('# ').lower(), vocab)
 	print (bpe.encode(usrInput))
 	reply, ix, ix_prob = utils.generate_a_reply3(botModel, usrInput, bpe, endToken)
 
