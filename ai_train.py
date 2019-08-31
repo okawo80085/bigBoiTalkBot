@@ -9,20 +9,24 @@ import time
 import os
 import utils
 from bpe import BPE
+from lose import LOSE
 
 print (tf.__version__)
 
-EPOCHS = 50
+EPOCHS = 1
 BATCH = 40000
 LR = 0.001
 
 SAVE_PATH = 'modelz/ytc_adopted_bpe_edition.h5'
-DATASET_PATH = 'data/train_data_BPExREDDIT_edition10k.npz'
+DATASET_PATH = 'data/train_data_BPExREDDIT_edition.h5'
 
 bpe = BPE()
+lose = LOSE()
 
 startTime = time.time()
-bpe.load('data/words.bpe')
+bpe.load('data/words2.bpe')
+lose.fname = DATASET_PATH
+lose.fmode = 'r'
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()
@@ -87,7 +91,7 @@ generator_model.compile(optimizer=tf.train.AdamOptimizer(LR),
 	loss='categorical_crossentropy',
 	metrics=[metric])
 
-tb_callback = tb(log_dir=os.path.normpath('./log/{}_step_{}_batch_{}'.format(SAVE_PATH, LR, BATCH)), histogram_freq=0)
+tb_callback = tb(log_dir=os.path.normpath('./log/{}_step_{}_batch_{}_epoch_{}'.format(SAVE_PATH, LR, BATCH, EPOCHS)), histogram_freq=0)
 generator_model.summary()
 
 try:
@@ -97,22 +101,18 @@ except Exception as e:
 	print ('failed to load model\'s weights:', e)
 	pass
 
-Xp, Xu, Y = utils.load_train_data2(DATASET_PATH)
+Xp, Xu, Y = lose.load('xp', 'xu', 'y')
 
 print (Xp.shape, Xu.shape, Y.shape)
 
-print (generator_model.predict([np.zeros((1, 200)), np.zeros((1, 200))]).shape)
+#print (generator_model.predict([np.zeros((1, 200)), np.zeros((1, 200))]).shape)
 
 
 print ('{:=^40}'.format('starting training'))
 
-#batch_loss, batch_acc = generator_model.train_on_batch([Xp[:BATCH], Xu[:BATCH]], [Y[:BATCH]])
-
-#print (batch_loss, batch_acc)
-
 generator_model.fit([Xp, Xu], [Y], epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
 
-generator_model.save(SAVE_PATH)
+#generator_model.save(SAVE_PATH)
 
 print ('{:=^40}'.format('done'))
 

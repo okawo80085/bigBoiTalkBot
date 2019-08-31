@@ -20,8 +20,8 @@ with open('data/reddit_data_xy_raw.p', 'rb') as f:
 
 #raw_data = utils.get_dataset(low_it=True)
 
-#SAVE_NAME = 'data/train_data_BPExREDDIT_edition.npz'
-SAVE_NAME = 'data/test.h5'
+SAVE_NAME = 'data/train_data_BPExREDDIT_edition.h5'
+#SAVE_NAME = 'data/test.h5'
 
 DATA_TO_PROCESS = int(input('data to process, {} max? '.format(len(raw_data))))
 BATCH_SIZE = int(input('batch size? '))
@@ -46,7 +46,8 @@ Xu = np.zeros(x2_shape.shape, dtype=np.float32)
 Y = np.zeros(y_shape.shape, dtype=np.float32)
 
 lose.fname = SAVE_NAME
-lose.newFile(xp=(0, Xp.shape[1:]), xu=(0, Xu.shape[1:]), y=(0, Y.shape[1:]))
+lose.fmode = 'w'
+lose.newGroup(xp=(0, Xp.shape[1:]), xu=(0, Xu.shape[1:]), y=(0, Y.shape[1:]))
 lose.fmode = 'a'
 
 while len(xi) > 0:

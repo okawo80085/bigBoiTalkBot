@@ -13,6 +13,7 @@ do
 	python3 ai_train.py
 	git commit ./modelz/ytc_adopted_bpe_edition.h5 -m "automated training"
 	git push origin master
+	killall python3.6
 	echo
 	echo batch $c complete
 	echo

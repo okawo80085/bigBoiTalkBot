@@ -47,7 +47,7 @@ botModel.summary()
 
 vocab = utils.vocab
 bpe = BPE()
-bpe.load('data/words.bpe')
+bpe.load('data/words2.bpe')
 endToken = bpe.str_to_token['\n']
 
 BOT_PREFIX = '!'
