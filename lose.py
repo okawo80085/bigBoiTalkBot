@@ -76,5 +76,6 @@ class LOSE:
 						raise StopIteration
 
 			elif self.index >= dataset_limit:
+				self.index = 0
 				if not self.loopforever:
 					raise StopIteration
