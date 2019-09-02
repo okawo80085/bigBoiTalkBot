@@ -47,6 +47,10 @@ class LOSE:
 
 		return out
 
+	def get_shape(self, arrName):
+		with t.open_file(self.fname, mode='r') as f:
+			return eval('f.root.{}.shape'.format(arrName))
+
 	def generator(self):
 		if self.iterItems is None or self.iterOutput is None or self.fname is None:
 			raise ValueError('self.iterItems and/or self.iterOutput and/or self.fname is empty')
@@ -54,9 +58,7 @@ class LOSE:
 		if len(self.iterItems) != 2 or len(self.iterOutput) != 2:
 			raise ValueError('self.iterItems or self.iterOutput has wrong dimensions, self.iterItems is [[list of x array names], [list of y array names]] and self.iterOutput is the name map for them')
 
-		with t.open_file(self.fname, mode='r') as f:
-			dataset_limit = eval('f.root.{}.shape[0]'.format(self.iterItems[0][0]))
-
+		dataset_limit = self.get_shape(self.iterItems[0][0])[0]
 		#print (dataset_limit)
 
 		while 1:
