@@ -107,7 +107,7 @@ lose.iterItems = [['xp', 'xu'], ['y']]
 lose.iterOutput = [['input_1', 'input_2'], ['dense_2']]
 lose.loopforevr = True
 
-step_size = lose.get_shape('xp')[0]//BATCH
+step_size = lose.get_shape('xp')[0]//BATCH + 2
 
 print ('{:=^40}'.format('starting training'))
 
