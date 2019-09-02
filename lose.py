@@ -51,20 +51,27 @@ class LOSE:
 		if self.iterItems is None or self.iterOutput is None or self.fname is None:
 			raise ValueError('self.iterItems and/or self.iterOutput and/or self.fname is empty')
 
+		if len(self.iterItems) != 2 or len(self.iterOutput) != 2:
+			raise ValueError('self.iterItems or self.iterOutput has wrong dimensions, self.iterItems is [[list of x array names], [list of y array names]] and self.iterOutput is the name map for them')
+
 		with t.open_file(self.fname, mode='r') as f:
-			dataset_limit = eval('f.root.{}.shape[0]'.format(self.iterItems[0]))
+			dataset_limit = eval('f.root.{}.shape[0]'.format(self.iterItems[0][0]))
 
 		#print (dataset_limit)
 
 		while 1:
-			step = {}
-			for name, key in zip(self.iterItems, self.iterOutput):
-				with t.open_file(self.fname, mode='r') as f:
+			stepX = {}
+			stepY = {}
+			with t.open_file(self.fname, mode='r') as f:
+				for name, key in zip(self.iterItems[0], self.iterOutput[0]):
 					x = eval('f.root.{}[{}:{}]'.format(name, self.index, self.index+self.batch_size))
+					stepX[key] = x
 
-					step[key] = x
+				for name, key in zip(self.iterItems[1], self.iterOutput[1]):
+					y = eval('f.root.{}[{}:{}]'.format(name, self.index, self.index+self.batch_size))
+					stepY[key] = y
 
-			yield step
+			yield (stepX, stepY)
 
 			self.index += self.batch_size
 
