@@ -101,18 +101,21 @@ except Exception as e:
 	print ('failed to load model\'s weights:', e)
 	pass
 
-Xp, Xu, Y = lose.load('xp', 'xu', 'y')
 
-print (Xp.shape, Xu.shape, Y.shape)
+lose.batch_size = BATCH
+lose.iterItems = [['xp', 'xu'], ['y']]
+lose.iterOutput = [['input_1', 'input_2'], ['dense_2']]
+lose.loopforevr = True
 
-#print (generator_model.predict([np.zeros((1, 200)), np.zeros((1, 200))]).shape)
-
+step_size = lose.get_shape('xp')[0]//BATCH
 
 print ('{:=^40}'.format('starting training'))
 
-generator_model.fit([Xp, Xu], [Y], epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
+#generator_model.fit([Xp, Xu], [Y], epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
 
-#generator_model.save(SAVE_PATH)
+generator_model.fit_generator(lose.generator(), steps_per_epoch=step_size, epochs=EPOCHS, shuffle=False, callbacks=[tb_callback])
+
+generator_model.save(SAVE_PATH)
 
 print ('{:=^40}'.format('done'))
 
