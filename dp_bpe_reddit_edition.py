@@ -47,7 +47,7 @@ Y = np.zeros(y_shape.shape, dtype=np.float32)
 
 lose.fname = SAVE_NAME
 lose.fmode = 'w'
-lose.newGroup(xp=(0, Xp.shape[1:]), xu=(0, Xu.shape[1:]), y=(0, Y.shape[1:]))
+lose.newGroup(xp=(0, *Xp.shape[1:]), xu=(0, *Xu.shape[1:]), y=(0, *Y.shape[1:]))
 lose.fmode = 'a'
 
 while len(xi) > 0:
