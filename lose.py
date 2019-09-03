@@ -40,7 +40,7 @@ class LOSE:
 
 	def load(self, *args):
 		out = []
-		with t.open_file(self.fname, mode=self.fmode) as f:
+		with t.open_file(self.fname, mode='r') as f:
 			for key in args:
 				x = eval('f.root.{}{}'.format(key, self.batch_obj))
 				out.append(x)
