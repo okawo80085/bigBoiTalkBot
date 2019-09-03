@@ -9,7 +9,7 @@
 *.db
 *.out
 log
-t.py
+t*.py
 __pycache__
 *.zip
 *.trn
