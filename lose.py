@@ -30,7 +30,7 @@ class LOSE:
 				f.create_earray(f.root, key, self.atom, val)
 				print ([key], val)
 
-			print (f)
+			#print (f)
 
 	def save(self, **kwards):
 		with t.open_file(self.fname, mode=self.fmode) as f:

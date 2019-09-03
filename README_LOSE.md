@@ -2,7 +2,17 @@
 
 `LOSE()` is a helper class for handling data using `hdf5` file format
 
-## structure of LOSE() class
+## structure of `LOSE()` class
+#### vars
+`LOSE.fname` is the path to  to the `.h5` file including the name and extension, default is `None`
+
+`LOSE.fmode` is the mode `.h5` file from `LOSE.fname` will be opened with, `'r'` for read(default), `'w'` for write, `'a'` for append
+
+`LOSE.atom` is the `dtype` for the data to be stored in, default is `Float32Atom()` which results to arrays with `dtype==np.float32`
+
+`LOSE.batch_obj` default is `'[:]'`, specifies the amount of data to be loaded by `LOSE.load()`, works like python list slicing, must be a string, default loads everything
+
+#### methods
 ```
 Help on LOSE in module lose object:
 
@@ -58,7 +68,7 @@ from lose import LOSE
 
 l = LOSE()
 l.fname = 'path/to/you/save/file.h5' # path to the .h5 file, has to be user defined before any methods can be used, default is None
-l.fmode = 'w' 						 # 'w' for write mode, 'a' for append mode, default is 'r'
+l.fmode = 'w' # 'w' for write mode, 'a' for append mode, default is 'r'
 
 exampleDataX = np.arange(20, dtype=np.float32)
 exampleDataY = np.arange(3, dtype=np.float32)
@@ -72,7 +82,7 @@ from lose import LOSE
 
 l = LOSE()
 l.fname = 'path/to/you/save/file.h5' # path to the .h5 file, has to be user defined before any methods can be used, default is None
-l.fmode = 'a' 						 # 'w' for write mode, 'a' for append mode, default is 'r', 'a' mode append data to the file, 'w' mode overwrites data for the group in the file
+l.fmode = 'a' # 'w' for write mode, 'a' for append mode, default is 'r', 'a' mode append data to the file, 'w' mode overwrites data for the group in the file
 
 exampleDataX = np.arange(20, dtype=np.float32)
 exampleDataY = np.arange(3, dtype=np.float32)
@@ -91,7 +101,7 @@ l.fname = 'path/to/you/save/file.h5' # path to the .h5 file, has to be user defi
 x, y = l.load('x', 'y')				 # loading data from the .h5 file(has to be a real file) populated by previous examples
 y2compare, x2compare = l.load('y', 'x') # the same thing 
 
-print (x == x2compare, y == y2compare) # True True
+print (np.all(x == x2compare), np.all(y == y2compare)) # True True
 ```
 ##### getting the shape of a group
 ```python
@@ -101,6 +111,7 @@ from lose import LOSE
 l = LOSE()
 l.fname = 'path/to/you/save/file.h5' # path to the .h5 file(populated by previous examples), has to be user defined before any methods can be used, default is None
 
-print (l.get_shape('x')) 			 # (3, 20)
-print (l.get_shape('y')) 			 # (3, 3)
+print (l.get_shape('x')) # (3, 20)
+print (l.get_shape('y')) # (3, 3)
 ```
+### `LOSE.generator()` details
