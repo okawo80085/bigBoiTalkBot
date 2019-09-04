@@ -12,10 +12,14 @@
 
 `LOSE.batch_obj` default is `'[:]'`, recommended to be left default, specifies the amount of data to be loaded by `LOSE.load()`, works like python list slicing, must be a string, default loads everything.
 
-`LOSE.generator()` related vars:
+**`LOSE.generator()` related vars:**
+
 `LOSE.batch_size` batch size of data getting pulled from the `.h5` file, default is 1.
+
 `LOSE.loopforever` bool that allows infinite looping over the data, default is `False`.
+
 `LOSE.iterItems` list of X group names and list of Y group names, default is `None`, required to be user defined for `LOSE.generator()` to work.
+
 `LOSE.iterOutput` list of X output names and list of Y output names, default is `None`, required to be user defined for `LOSE.generator()` to work.
 
 #### methods
