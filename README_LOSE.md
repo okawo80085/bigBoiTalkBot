@@ -2,6 +2,14 @@
 
 `LOSE()` is a helper class for handling data using `hdf5` file format and `tables` lib
 
+```python
+>>> from lose import LOSE
+>>> l = LOSE()
+>>> l
+<.h5 data handler, fname=None, fmode='r', atom=Float32Atom(shape=(), dflt=0.0)>
+
+```
+
 ## structure
 #### vars
 `LOSE.fname` is the path to  to the `.h5` file including the name and extension, default is `None`.
