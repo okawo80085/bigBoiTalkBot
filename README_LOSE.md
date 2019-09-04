@@ -1,16 +1,22 @@
 # lose.py
 
-`LOSE()` is a helper class for handling data using `hdf5` file format
+`LOSE()` is a helper class for handling data using `hdf5` file format and `tables` lib
 
-## structure of `LOSE()` class
+## structure
 #### vars
-`LOSE.fname` is the path to  to the `.h5` file including the name and extension, default is `None`
+`LOSE.fname` is the path to  to the `.h5` file including the name and extension, default is `None`.
 
-`LOSE.fmode` is the mode `.h5` file from `LOSE.fname` will be opened with, `'r'` for read(default), `'w'` for write, `'a'` for append
+`LOSE.fmode` is the mode `.h5` file from `LOSE.fname` will be opened with, `'r'` for read(default), `'w'` for write, `'a'` for append.
 
-`LOSE.atom` is the `dtype` for the data to be stored in, default is `Float32Atom()` which results to arrays with `dtype==np.float32`
+`LOSE.atom` recommended to be left at default, is the `dtype` for the data to be stored in, default is `tables.Float32Atom()` which results to arrays with `dtype==np.float32`.
 
-`LOSE.batch_obj` default is `'[:]'`, specifies the amount of data to be loaded by `LOSE.load()`, works like python list slicing, must be a string, default loads everything
+`LOSE.batch_obj` default is `'[:]'`, recommended to be left default, specifies the amount of data to be loaded by `LOSE.load()`, works like python list slicing, must be a string, default loads everything.
+
+`LOSE.generator()` related vars:
+`LOSE.batch_size` batch size of data getting pulled from the `.h5` file, default is 1.
+`LOSE.loopforever` bool that allows infinite looping over the data, default is `False`.
+`LOSE.iterItems` list of X group names and list of Y group names, default is `None`, required to be user defined for `LOSE.generator()` to work.
+`LOSE.iterOutput` list of X output names and list of Y output names, default is `None`, required to be user defined for `LOSE.generator()` to work.
 
 #### methods
 ```
