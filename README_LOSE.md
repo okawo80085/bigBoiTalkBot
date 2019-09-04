@@ -124,4 +124,24 @@ l.fname = 'path/to/you/save/file.h5' # path to the .h5 file(populated by previou
 print (l.get_shape('x')) # (3, 20)
 print (l.get_shape('y')) # (3, 3)
 ```
-### `LOSE.generator()` details
+## `LOSE.generator()` details
+`LOSE.generator()` is a python generator used to access data from a `.h5` file in `LOSE.batch_size` pieces without loading the hole file or the hole group into memory, also works with `model.fit_generator()`.
+
+`LOSE.iterItems` and `LOSE.iterOutput` __have__ to be defined by user first
+
+### example `LOSE.generator()` usage
+for this example let's say that file has requested data in it
+```python
+import numpy as np
+from lose import LOSE
+
+l = LOSE()
+l.fname = 'path/to/you/save/file.h5' # path to data
+
+l.iterItems = [['x1', 'x2'], ['y']] # names of X groups and names of Y groups, all group names need to have most outer dim the same and be present in the .h5 file
+l.iterOutput = [['input_1', 'input_2'], ['dense_5']] # names of model's layers the data will be cast on, group.shape[1:] needs to match the layer's input shape
+l.loopforever = True
+l.batch_size = 20 # some batch size, can be bigger then the dataset, but won't output more data, it will just loop over or stop the iteration if LOSE.loopforever is False
+
+some_mode.fit_generator(l.generator(), steps_per_epoch=50, epochs=1000, shuffle=False) # the only down side is that it can't be shuffled by by model.fit_generator(), yet...
+```
