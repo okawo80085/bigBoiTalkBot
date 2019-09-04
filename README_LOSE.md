@@ -143,5 +143,5 @@ l.iterOutput = [['input_1', 'input_2'], ['dense_5']] # names of model's layers t
 l.loopforever = True
 l.batch_size = 20 # some batch size, can be bigger then the dataset, but won't output more data, it will just loop over or stop the iteration if LOSE.loopforever is False
 
-some_mode.fit_generator(l.generator(), steps_per_epoch=50, epochs=1000, shuffle=False) # the only down side is that it can't be shuffled by by model.fit_generator(), yet...
+some_mode.fit_generator(l.generator(), steps_per_epoch=50, epochs=1000, shuffle=False) # the only down side is that it can't be shuffled by model.fit_generator(), yet...
 ```
