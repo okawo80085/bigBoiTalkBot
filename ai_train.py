@@ -14,7 +14,7 @@ from lose import LOSE
 print (tf.__version__)
 
 EPOCHS = 1
-BATCH = 40000
+BATCH = 5000
 LR = 0.001
 
 SAVE_PATH = 'modelz/ytc_adopted_bpe_edition.h5'
@@ -105,7 +105,7 @@ except Exception as e:
 lose.batch_size = BATCH
 lose.iterItems = [['xp', 'xu'], ['y']]
 lose.iterOutput = [['input_1', 'input_2'], ['dense_2']]
-lose.loopforevr = True
+lose.loopforever = True
 
 step_size = lose.get_shape('xp')[0]//BATCH + 2
 
