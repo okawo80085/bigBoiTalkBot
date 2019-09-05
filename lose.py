@@ -61,10 +61,10 @@ class LOSE:
 		dataset_limit = self.get_shape(self.iterItems[0][0])[0]
 		#print (dataset_limit)
 
-		while 1:
-			stepX = {}
-			stepY = {}
-			with t.open_file(self.fname, mode='r') as f:
+		with t.open_file(self.fname, mode='r') as f:
+			while 1:
+				stepX = {}
+				stepY = {}
 				for name, key in zip(self.iterItems[0], self.iterOutput[0]):
 					x = eval('f.root.{}[{}:{}]'.format(name, self.index, self.index+self.batch_size))
 					stepX[key] = x
@@ -73,18 +73,18 @@ class LOSE:
 					y = eval('f.root.{}[{}:{}]'.format(name, self.index, self.index+self.batch_size))
 					stepY[key] = y
 
-			yield (stepX, stepY)
+				yield (stepX, stepY)
 
-			self.index += self.batch_size
+				self.index += self.batch_size
 
-			if self.limit is not None:
-				if self.index >= self.limit or self.index >= dataset_limit:
+				if self.limit is not None:
+					if self.index >= self.limit or self.index >= dataset_limit:
+						self.index = 0
+
+						if self.loopforever != True:
+							raise StopIteration
+
+				elif self.index >= dataset_limit:
 					self.index = 0
-
-					if not self.loopforever:
+					if self.loopforever != True:
 						raise StopIteration
-
-			elif self.index >= dataset_limit:
-				self.index = 0
-				if not self.loopforever:
-					raise StopIteration
