@@ -1,8 +1,11 @@
 #!/bin/bash
 
 path="some/path/"
+titleName="automated trainer"
 
 name=$(basename -- "$0")
+
+echo -ne "\033]0;$titleName\007"
 
 echo gnome-terminal -- \"$PWD/$name\"
 

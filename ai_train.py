@@ -13,8 +13,8 @@ from lose import LOSE
 
 print (tf.__version__)
 
-EPOCHS = 1
-BATCH = 5000
+EPOCHS = 10
+BATCH = 40000
 LR = 0.001
 
 SAVE_PATH = 'modelz/ytc_adopted_bpe_edition.h5'
