@@ -4,4 +4,4 @@ sacremoses
 numpy
 discord.py==0.16.12
 textstat
-tables
+lose
