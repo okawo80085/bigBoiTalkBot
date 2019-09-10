@@ -110,13 +110,12 @@ lose.shuffle = True
 
 step_size = lose.get_shape('xp')[0]//BATCH + 2
 
-lose.generator_init()
-
 print ('{:=^40}'.format('starting training'))
 
 #generator_model.fit([Xp, Xu], [Y], epochs=EPOCHS, batch_size=BATCH, shuffle=True, callbacks=[tb_callback])
 
-h = generator_model.fit_generator(lose.generator(), steps_per_epoch=step_size, epochs=EPOCHS, shuffle=False, callbacks=[tb_callback])
+with lose.generator() as gen:
+	h = generator_model.fit_generator(gen(), steps_per_epoch=step_size, epochs=EPOCHS, shuffle=False, callbacks=[tb_callback])
 
 generator_model.save(SAVE_PATH)
 
