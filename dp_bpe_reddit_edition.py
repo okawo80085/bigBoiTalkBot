@@ -46,9 +46,7 @@ Xu = np.zeros(x2_shape.shape, dtype=np.float32)
 Y = np.zeros(y_shape.shape, dtype=np.float32)
 
 lose.fname = SAVE_NAME
-lose.fmode = 'w'
-lose.newGroup(xp=(0, *Xp.shape[1:]), xu=(0, *Xu.shape[1:]), y=(0, *Y.shape[1:]))
-lose.fmode = 'a'
+lose.newGroup(fmode='w', xp=(0, *Xp.shape[1:]), xu=(0, *Xu.shape[1:]), y=(0, *Y.shape[1:]))
 
 while len(xi) > 0:
 	X_past_on_batch, X_user_on_batch, Y_on_batch = utils.encoded2xy(xi[:BATCH_SIZE], xp[:BATCH_SIZE], y[:BATCH_SIZE], endToken, numTokens)
