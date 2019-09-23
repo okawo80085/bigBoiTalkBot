@@ -18,5 +18,6 @@ __pycache__
 *.from
 *.bpe
 *.p
-data
+data/*
 !requirements.txt
+!reddit_data_xy_raw.p
