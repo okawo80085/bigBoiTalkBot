@@ -13,11 +13,11 @@ from lose import LOSE
 
 print (tf.__version__)
 
-EPOCHS = 10
-BATCH = 40000
-LR = 0.001
+EPOCHS = 5
+BATCH = 50000
+LR = 0.003
 
-SAVE_PATH = 'modelz/ytc_adopted_bpe_edition.h5'
+SAVE_PATH = 'modelz/test.h5'
 DATASET_PATH = 'data/train_data_BPExREDDIT_edition.h5'
 
 bpe = BPE()
@@ -26,7 +26,6 @@ lose = LOSE()
 startTime = time.time()
 bpe.load('data/words2.bpe')
 lose.fname = DATASET_PATH
-lose.fmode = 'r'
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()
@@ -64,20 +63,21 @@ def make_model2(input_dim=(200,), out_dim=95):
 	pastInput = l.Input(shape=input_dim)
 	userInput = l.Input(shape=input_dim)
 
-	user = l.Dense(100)(userInput)
+	user = l.Dense(150)(userInput)
 	user = l.BatchNormalization()(user)
 	user = l.LeakyReLU()(user)
 	user = l.RepeatVector(8)(user)
 
-	past = l.Dense(125)(pastInput)
+	past = l.Dense(200)(pastInput)
 	past = l.BatchNormalization()(past)
 	past = l.LeakyReLU()(past)
 	past = l.RepeatVector(8)(past)
 
 	x = l.concatenate([past, user])
-	x = l.Dropout(0.11)(x)
+	x = l.Dropout(0.1)(x)
 
-	x = l.GRU(128, return_sequences=False)(x)
+	x = l.GRU(200, return_sequences=True)(x)
+	x = l.GRU(50, return_sequences=False)(x)
 
 	out = l.Dense(out_dim, activation='softmax')(x)
 
@@ -108,7 +108,7 @@ lose.iterOutput = [['input_1', 'input_2'], ['dense_2']]
 lose.loopforever = True
 lose.shuffle = True
 
-step_size = lose.get_shape('xp')[0]//BATCH + 2
+step_size = lose.getShape('xp')[0]//BATCH + 2
 
 print ('{:=^40}'.format('starting training'))
 
