@@ -3,7 +3,7 @@ from bpe import BPE
 bpe_vocab = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-+=/<>\'":;,.[]'
 
 with open('ref.txt', 'rt') as f:
-	text = f.read()
+	text = f.read().lower()
 
 bpe = BPE()
 bpe.add_seq(text)
