@@ -24,7 +24,7 @@ bpe = BPE()
 lose = LOSE(fname=DATASET_PATH)
 
 startTime = time.time()
-bpe.load('data/words2.bpe')
+bpe.load('data/words3.bpe')
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()

@@ -12,7 +12,7 @@ SAVE_NAME = 'data/train_data_BPExREDDIT_edition.h5'
 #SAVE_NAME = 'data/test.h5'
 
 bpe = BPE()
-bpe.load('data/words2.bpe')
+bpe.load('data/words3.bpe')
 endToken = bpe.str_to_token['\n']
 numTokens = len(bpe.str_to_token)
 
@@ -30,7 +30,7 @@ if DATA_TO_PROCESS > len(raw_data):
 	DATA_TO_PROCESS = len(raw_data)
 
 #xi, xp, y = utils.encodeDataReddit(raw_data[:DATA_TO_PROCESS], bpe, endToken)
-xi, xp, y = utils.encodeDataReddit(raw_data[:DATA_TO_PROCESS], bpe, endToken)
+xi, xp, y = utils.encodeDataReddit(raw_data[:DATA_TO_PROCESS], bpe, endToken, low_it=True)
 
 print ('to start processing {} of data, press any key'.format(len(xi)))
 input()
