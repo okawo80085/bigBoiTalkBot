@@ -21,11 +21,10 @@ SAVE_PATH = 'modelz/test.h5'
 DATASET_PATH = 'data/train_data_BPExREDDIT_edition.h5'
 
 bpe = BPE()
-lose = LOSE()
+lose = LOSE(fname=DATASET_PATH)
 
 startTime = time.time()
 bpe.load('data/words2.bpe')
-lose.fname = DATASET_PATH
 
 def make_model(input_dim=(400,), out_dim=95):
 	model = ker.Sequential()

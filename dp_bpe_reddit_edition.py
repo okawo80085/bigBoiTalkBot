@@ -8,20 +8,20 @@ from lose import LOSE
 import tables as t
 import os
 
+SAVE_NAME = 'data/train_data_BPExREDDIT_edition.h5'
+#SAVE_NAME = 'data/test.h5'
+
 bpe = BPE()
 bpe.load('data/words2.bpe')
 endToken = bpe.str_to_token['\n']
 numTokens = len(bpe.str_to_token)
 
-lose = LOSE()
+lose = LOSE(fname=SAVE_NAME)
 
 with open('data/reddit_data_xy_raw.p', 'rb') as f:
 	raw_data = p.load(f)
 
 #raw_data = utils.get_dataset(low_it=True)
-
-SAVE_NAME = 'data/train_data_BPExREDDIT_edition.h5'
-#SAVE_NAME = 'data/test.h5'
 
 DATA_TO_PROCESS = int(input('data to process, {} max? '.format(len(raw_data))))
 BATCH_SIZE = int(input('batch size? '))
@@ -45,7 +45,6 @@ Xp = np.zeros(x1_shape.shape, dtype=np.float32)
 Xu = np.zeros(x2_shape.shape, dtype=np.float32)
 Y = np.zeros(y_shape.shape, dtype=np.float32)
 
-lose.fname = SAVE_NAME
 lose.newGroup(fmode='w', xp=(0, *Xp.shape[1:]), xu=(0, *Xu.shape[1:]), y=(0, *Y.shape[1:]))
 
 while len(xi) > 0:

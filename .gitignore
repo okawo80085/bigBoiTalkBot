@@ -16,8 +16,11 @@ __pycache__
 *.json
 *.to
 *.from
-*.bpe
 *.p
 data/*
 !requirements.txt
 !reddit_data_xy_raw.p
+!reddit_raw_for_encode.txt
+!data/words.bpe
+!data/words2.bpe
+!data/words3.bpe

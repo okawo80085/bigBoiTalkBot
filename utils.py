@@ -501,12 +501,17 @@ def encodeData(strList, bpe, endToken, maxLen=200):
 
 	return outXi, outXp, outY
 
-def encodeDataReddit(strList, bpe, endToken, maxLen=200):
+def encodeDataReddit(strList, bpe, endToken, low_it=False, maxLen=200):
 	print ('starting...')
 	temp = []
 	for x, y in strList:
+		if low_it:
+			x = x.lower()
+			y = y.lower()
+
 		xl = bpe.encode(x)
 		yl = bpe.encode(y)
+
 		if len(xl) <= maxLen and len(yl) <= maxLen:
 			temp.append((xl, yl))
 
