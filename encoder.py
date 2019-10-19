@@ -2,7 +2,7 @@ from bpe import BPE
 
 bpe_vocab = 'abcdefghijklmnopqrstuvwxyz0123456789!@#$%^&*()-+=/<>\'":;,.[]'
 
-with open('ref.txt', 'rt') as f:
+with open('data/reddit_raw_for_encode.txt', 'rt') as f:
 	text = f.read().lower()
 
 bpe = BPE()
