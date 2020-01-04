@@ -30,7 +30,7 @@ print (vocab)
 while 1:
 	usrInput = utils.clean_text(input('# ').lower(), vocab)
 	print (bpe.encode(usrInput))
-	reply, ix, ix_prob = utils.generate_a_reply3(botModel, usrInput, bpe, endToken)
+	reply, ix = utils.generate_a_reply3(botModel, usrInput, bpe, endToken)
 
 	print (ix)
 	print ([reply])

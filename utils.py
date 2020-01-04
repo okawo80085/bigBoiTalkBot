@@ -344,9 +344,17 @@ def find_dominant_neuron(tensor_1D):
 	'''
 	finds a dominant neuron and returns its probabillity and index
 	'''
-	neuron_index = np.argmax(tensor_1D)
+	to_sort = []
 
-	return [neuron_index, tensor_1D[neuron_index]]
+	key = lambda x: x[0]
+
+	# print (tensor_1D.shape)
+	for x, i in zip(tensor_1D, np.arange(*tensor_1D.shape)):
+		to_sort.append([x, i])
+
+	ss = sorted(to_sort, key=key)[-5:]
+
+	return random.choice(ss)[1]
 
 def score(text, question):
 	'''
@@ -432,7 +440,7 @@ def generate_a_reply2(model, textInput, vocab, noise=1, maxLen=200):
 	return re.sub('[ ]+', ' ', ''.join(arr_to_vocab(out1, vocabTo)).strip(' ')), out1, out2
 
 def generate_a_reply3(model, text, bpe, endToken, maxLen=200):
-	out1, out2 = [], []
+	out1 = []
 
 	temp2 = np.expand_dims(pad_right(np.array(bpe.encode(text), dtype=np.float32), maxLen, val=endToken), axis=0)
 
@@ -445,10 +453,10 @@ def generate_a_reply3(model, text, bpe, endToken, maxLen=200):
 		model.reset_states()
 		for i in model.predict([temp, temp2]):
 			rep = find_dominant_neuron(i)
-			out1.append(rep[0])
-			out2.append(rep[1])
+			out1.append(rep)
 
-	return re.sub('[ ]+', ' ', bpe.decode(out1).strip(' ')), out1, out2
+
+	return re.sub('[ ]+', ' ', bpe.decode(out1).strip(' ')), out1
 
 def respond(model, userInput, vocab):
 	firstResp, _, _ = generate_a_reply(model, userInput, vocab)

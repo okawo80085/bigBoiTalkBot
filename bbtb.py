@@ -83,7 +83,7 @@ async def on_message(msg):
 
 		#loop = asyncio.get_event_loop()
 
-		resp, ix, _ = utils.generate_a_reply3(botModel, proced, bpe, endToken)
+		resp, ix = utils.generate_a_reply3(botModel, proced, bpe, endToken)
 		resp = resp.strip('\n')
 		print ([resp])
 		#responce = random.choice(resps)[0]
