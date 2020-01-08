@@ -548,17 +548,17 @@ def encoded2xy(x1, x2, y, endToken, numTokens, maxLen=200):
 
 	dataLen = len(y)
 
-	print ('{:=^40}'.format(' converting data '))
+	# print ('{:=^40}'.format(' converting data '))
 
 	for index, i in enumerate(zip(x1, x2)):
 		outXpast = np.concatenate((outXpast, [pad_right(np.array(i[1], dtype=np.float32), maxLen, val=endToken)]), axis=0)
 		outXuser = np.concatenate((outXuser, [pad_right(np.array(i[0], dtype=np.float32), maxLen, val=endToken)]), axis=0)
 
-		if index % 100 == 0:
-			print ('{}/{} done'.format(index, dataLen))
+		# if index % 100 == 0:
+		# 	print ('{}/{} done'.format(index, dataLen))
 
 		#print (temp.shape, temp2.shape, tempX.shape)
 
-	print ('{:=^40}'.format(' done '))
+	# print ('{:=^40}'.format(' done '))
 
 	return outXpast[1:], outXuser[1:], to_categorical(y, numTokens)
