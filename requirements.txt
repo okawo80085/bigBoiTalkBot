@@ -1,5 +1,5 @@
 nltk
-tensorflow==1.15.0
+tensorflow==1.15.2
 sacremoses
 numpy
 discord.py==0.16.12
